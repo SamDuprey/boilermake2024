@@ -1,0 +1,7 @@
+
+pip install Pillow==9.5.0
+pip install pyttsx3
+pip install moviepy
+pip install imageio[ffmpeg]
+brew install ffmpeg # mac only:  windows is here: https://ffmpeg.org/download.html
+
