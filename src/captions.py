@@ -4,6 +4,7 @@ import pyttsx3
 from moviepy.editor import TextClip, concatenate_videoclips, CompositeVideoClip
 from moviepy.editor import AudioFileClip
 import re
+
 language = 'en'
 
 def remove_sentence_pauses(text):
@@ -55,7 +56,7 @@ def generate_captions_video(text, output_file):
             end_time = match.end() * audio_duration / len(text)
 
             # Create TextClip for the caption with a green background
-            text_clip = TextClip(caption_text, fontsize=24, color='white', bg_color='#00FF00', size=(video_width, video_height))
+            text_clip = TextClip(caption_text, fontsize=30, color='white', bg_color='#00FF00', font='Helvetica-Neue-Medium', size=(video_width, video_height))
 
             # Set the duration and position of the text clip
             text_clip = text_clip.set_duration(end_time - start_time).set_position(('center', 'bottom')).set_start(start_time)
@@ -70,35 +71,11 @@ def generate_captions_video(text, output_file):
     final_video = final_video.set_audio(audio_clip)
 
     # Export the final video with synchronized audio in MOV format
-    final_video.write_videofile(output_file, codec='libx264', audio_codec='aac', fps=24, remove_temp=False)
+    final_video.write_videofile(output_file, codec='libx264', audio_codec='aac', fps=24, remove_temp=True)
 
     # Remove temporary audio file
     os.remove(audio_file)
 
-def chroma_key_video(input_video, output_video):
-    # Set the chroma key color (green in this case)
-    chroma_key_color = "0x70de77:0.1:0.2"  # Hex color code for green
+def fontlist():
+  print(TextClip.list('font'))
 
-    # Use ffmpeg to apply chroma keying
-    cmd = [
-        "ffmpeg",
-        "-i", input_video,
-        "-vf", f"lutrgb=r=maxval:g=(val-{chroma_key_color}):b=maxval+minval",
-        "-c:a", "copy",
-        "-c:v", "qtrle",  # Use qtrle codec for QuickTime with alpha channel
-        output_video
-    ]
-
-    subprocess.run(cmd, check=True)
-
-
-if __name__ == "__main__":
-    text_to_speak = "AITAH for divorcing my husband for a man who gave me a kidney? I (43F) have a genetic kidney condition and I lost the function of both of my kidneys a couple of years ago. I was on dialysis and on the transplant list. I never drank alcohol or did anything to exacerbate my disease. It’s just luck of the draw."
-    output_video_file = "./assets/video.mov"
-
-    # generate_captions_video(text_to_speak, output_video_file)
-    
-    input_green_screen_video = "./assets/video.mov"
-    output_transparent_video = "./assets/transparent_video.mov"
-
-    chroma_key_video(input_green_screen_video, output_transparent_video)

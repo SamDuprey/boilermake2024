@@ -4,3 +4,5 @@
 main.py
 tts.py
 video.py
+
+__pycache__
