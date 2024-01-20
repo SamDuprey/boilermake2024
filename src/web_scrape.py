@@ -88,10 +88,41 @@ def scrape_story(urls):
         stories.append(big_string.strip())
     return stories
 
-# Insert the thread that you want scraped
+# takes in a URL from history.com article and returns the title + article intro string
+def scrape_history(url):
+    browser_options = ChromeOptions()
+    browser_options.headless = True
+
+    driver = Chrome(options=browser_options)
+    driver.get(url)
+
+    sentence = ""
+    title_element = driver.find_element(By.CLASS_NAME, "page-header__title")
+    title_element = title_element.text
+    punctuation_chars = set(string.punctuation)
+    if title_element:
+        title_text = str(title_element)
+        if title_text[-1] not in punctuation_chars:
+            title_text += "."
+        sentence += title_text + " "
+
+    summary = driver.find_element(By.CLASS_NAME, "article-intro")
+    summary = summary.get_attribute("outerHTML")
+    soup = BeautifulSoup(summary, 'html.parser')
+    summary = soup.find('div', class_='article-intro').find('p').get_text(strip=True)
+
+    sentence += summary
+    sentence.strip()
+    driver.close()
+    return sentence
+
+# Insert the thread that you want scraped (reddit)
 urls = scrape("https://www.reddit.com/r/AmItheAsshole/")
 urls.pop(0)
 urls = list(set(urls))
-
 # Returns a list of strings (stories)
 result = scrape_story(urls)
+
+# Gets title and intro from a history.com article
+history = scrape_history("https://www.history.com/topics/exploration/marco-polo")
+print(history)
