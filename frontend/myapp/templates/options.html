@@ -1,0 +1,19 @@
+{% extends "base.html" %} {% block title %}Home Page{% endblock %}
+
+{% block content %}
+
+<div class="mainContainer">
+    <div class="questionText">
+        <p>What kind of video do you want to generate?</p>
+    </div>
+
+        
+    <div class="container hover">
+        <a href="{% url 'story_options' %}" class="button">Entertainment</a>
+    </div> 
+    <div class="container hover">
+        <a href="#" class="button">History</a>
+    </div> 
+</div>
+
+{% endblock %}

@@ -33,8 +33,10 @@
 
 .mainContainer {
     display: flex;
-    justify-content: center; /* Centers horizontally */
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    height: 100vh;
 }
 
 .hover {
@@ -44,10 +46,22 @@
 }
 
 .headerText {
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin-top: 20px; /* Adjust the value to set the desired white space */
+    width: 75%;
+    text-align: center;
+}
+
+.headerText .descriptionText {
+    text-align: center;
+    font-weight: 400;
+    font-size: 1.4em;
+}
+
+.questionText {
+    text-align: center;
+    font-weight: 400;
+    font-size: 1.6em;
+    width: 75%;
+    margin-bottom: 10px;
 }
 
 
@@ -64,6 +78,9 @@
     position: relative;
     overflow: hidden;
     z-index: 1;
+    width: 250px;
+    text-align: center;
+    margin-bottom: 10px;
 }
 .hover .button:after {
     content: '';
