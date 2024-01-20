@@ -56,7 +56,7 @@ def generate_captions_video(text, output_file):
             end_time = match.end() * audio_duration / len(text)
 
             # Create TextClip for the caption with a green background
-            text_clip = TextClip(caption_text, fontsize=30, color='white', bg_color='#00FF00', font='Helvetica-Neue-Medium', size=(video_width, video_height))
+            text_clip = TextClip(caption_text, fontsize=30, color='white', bg_color='#00FF00', font='Helvetica-Neue-Bold', size=(video_width, video_height))
 
             # Set the duration and position of the text clip
             text_clip = text_clip.set_duration(end_time - start_time).set_position(('center', 'bottom')).set_start(start_time)
