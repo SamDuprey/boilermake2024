@@ -6,6 +6,8 @@ urlpatterns = [
     path('execute_dummy/', execute_dummy, name='execute_dummy'),
     path("", views.home, name="home"),
     path("create/", views.create, name="create"),
+    path("options/", views.options, name="options"),
+    path("story_options/", views.story_options, name="story_options"),
 ]
 
 from django.urls import path
