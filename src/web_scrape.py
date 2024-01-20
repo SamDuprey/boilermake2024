@@ -126,3 +126,4 @@ result = scrape_story(urls)
 # Gets title and intro from a history.com article
 history = scrape_history("https://www.history.com/topics/exploration/marco-polo")
 print(history)
+
