@@ -1,45 +1,38 @@
 {% extends "base.html" %}
+
 {% block title %}Create Page{% endblock %}
 {% block homeActive %}"nav-item"{% endblock %}
 {% block createActive %}"nav-item active"{% endblock %}
-{% block contactActive %}"nav-item"{% endblock %}
 
 
 {% block content %}
+<br />
+<p class="createDescription">This is our create page. Here you can choose from a variety of options to create different videos</p>
 
 <div>
-  <p>This is our create page</p>
-  <p>Here you can choose from a variety of options to create different videos</p>
+  <form class="center">
+    <label class="dropdownLabel" for="dropdown1">Content:</label>
+    <select class="dropdown" id="dropdown1" name="dropdown1">
+      <option value="AITAH">r/AITAH</option>
+      <option value="TIFU">r/TIFU</option>
+      <option value="News">News</option>
+    </select>
 </div>
 
-<form>
-  <label for="dropdown1">Content:</label>
-  <select id="dropdown1" name="dropdown1">
-    <option value="AITAH">r/AITAH</option>
-    <option value="TIFU">r/TIFU</option>
-    <option value="News">News</option>
-  </select>
-
   <br />
-
-  <label for="dropdown2">Video:</label>
-  <select id="dropdown2" name="dropdown2">
+<div>
+  <label class="dropdownLabel" for="dropdown2">Video:</label>
+  <select class="dropdown" id="dropdown2" name="dropdown2">
     <option value="Subway Surfers">Subway Surfers</option>
     <option value="Generated Images">Generated Images</option>
     <option value="Minecraft Parkour">Minecraft Parkour</option>
   </select>
-
-  <br />
-
-  <form action="/content/" method="post">
-    <label for="content">Choose content: </label>
-    <input id="content" type="text" name="content" value="{{ current_name }}" />
-    <input type="submit" value="OK" />
-  </form>
-
+</div>
+<div class="generateBtn">
   <button type="button" onclick="submitFormAndShowLoadingCircle()">
-    Submit
+    Generate
   </button>
+</div>
   <div id="loading-circle" style="display: none">
     <div class="spinner-border text-primary" role="status">
       <span class="sr-only">Loading...</span>
@@ -50,9 +43,13 @@
   </div>
 </form>
 
-<video width="480" height="360" controls >
+
+<div class="center">
+  <video class="middle" width="480" height="360" controls class="video">
     <source src="../static/videos/video.mp4" type="video/mp4">
-</video>
+  </video>
+</div>
+
 <script>
     function submitFormAndShowLoadingCircle() {
       // Get selected values from dropdowns
