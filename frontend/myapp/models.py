@@ -33,4 +33,13 @@ class MyForm(forms.Form):
         ('option3', 'Option 3'),
     ]
     dropdown_field = forms.ChoiceField(choices=dropdown_choices)
-    
+
+class Employee(models.Model):
+    emp_id=models.IntegerField(primary_key=True)
+    name=models.CharField(max_length=150)
+    gender=models.CharField(max_length=8)
+    designation=models.CharField(max_length=150)
+    def __str__(self):
+        return self.name
+    class Meta:
+        db_table = 'Employee'
