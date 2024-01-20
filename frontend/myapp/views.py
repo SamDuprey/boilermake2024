@@ -6,6 +6,7 @@ from .models import *
 import pandas as pd
 from plotly.offline import plot
 import plotly.express as px
+from django.views.generic import TemplateView
 
 # Create your views here.
 
@@ -14,9 +15,6 @@ def home(request):
 
 def create(request):
     return render(request, "create.html")
-
-def contact(request):
-    return render(request, "contact.html")
 
 def todos(request):
     items = TodoItem.objects.all()
