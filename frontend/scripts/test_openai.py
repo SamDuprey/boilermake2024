@@ -7,7 +7,7 @@ def generate_story(subreddit):
         api_key='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',
     )
 
-    user_message = f"Create a short example post that replicates the nature of stories in the subreddit r/{subreddit}. Make the post short. The story should contain crazy contraversial takes and topics that create discussion. But the narrator shouldn't ever directly say that the story is contraversial, as it is more effective to show than tell"
+    user_message = f"Create a short example post that replicates the nature of stories in the subreddit r/{subreddit}. Make the post short, under 200 words. The story should contain crazy, scanalous topics that create discussion. But the narrator shouldn't ever directly say that the story is contraversial, as it is more effective to show than tell. In fact, avoid sounding corny at all costs, and do NOT say the phrase 'buckle up'"
 
     chat_completion = client.chat.completions.create(
         messages=[
