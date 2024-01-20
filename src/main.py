@@ -1,11 +1,10 @@
 import os
-from gtts import gTTS
-from moviepy.editor import TextClip, CompositeVideoClip
-from moviepy.editor import AudioFileClip
-from textwrap import wrap
 
 from captions import generate_captions_video
-from combine import trim_video_to_match_duration, convert_mp4_to_mov, apply_chroma_key
+from combine import trim_video_to_match_duration, apply_chroma_key
+
+def delete_pycache():
+  os.popen('find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | xargs rm -rf')
 
 if __name__ == "__main__":
     text_to_speak = "AITAH for divorcing my husband for a man who gave me a kidney? I (43F) have a genetic kidney condition and I lost the function of both of my kidneys a couple of years ago. I was on dialysis and on the transplant list. I never drank alcohol or did anything to exacerbate my disease. It’s just luck of the draw."
@@ -16,13 +15,15 @@ if __name__ == "__main__":
     
     output_path = "./assets/output.mov"
     
-    # # generates video with tts and caption with green-screen background
+    # generates video with tts and caption with green-screen background
     generate_captions_video(text_to_speak, captions_video_file)
     
-    # # trims the background video to be the same length as the caption
+    # deletes __pycache__ folder
+    delete_pycache()
+    
+    # trims the background video to be the same length as the caption
     trim_video_to_match_duration(captions_video_file, background_video_file, trimmed_background_video_file)
 
-    # # applys chroma key to remove the green background
+    # applys chroma key to remove the green background
     apply_chroma_key(trimmed_background_video_file, captions_video_file, output_path, similarity=0.3, blend=0.3)
     
-    # fontlist()
