@@ -21,6 +21,23 @@ def trim_video_to_match_duration(video1, video2, output_video):
 
     subprocess.run(cmd)
 
+def apply_chroma_key(subway_path, captions_path, output_path, similarity=0.1, blend=0.1):
+    # Set the chroma key color (green in this case)
+    chroma_key_color = "0x00FF00"  # Hex color code for green
+
+    # Use ffmpeg to apply chroma keying
+    cmd = [
+        "ffmpeg",
+        "-i", subway_path,
+        "-i", captions_path,
+        "-filter_complex", f"[1:v]colorkey={chroma_key_color}:{similarity}:{blend}[ckout];[0:v][ckout]overlay[out]",
+        "-map", "[out]",
+        "-map", "1:a",
+        output_path
+    ]
+
+    subprocess.run(cmd, check=True)
+
 def combine_videos(video1, video2, output_video):
     # Run ffmpeg command to overlay video1 onto video2 with audio
     cmd = [
@@ -53,18 +70,3 @@ def convert_mp4_to_mov(input_mp4, output_mov):
 
     subprocess.run(cmd)
 
-if __name__ == "__main__":
-    video1 = "./assets/video.mov"  # Change the file extension to MOV
-    video2 = "./assets/SubwaySurfers.mp4"  # Assuming this is the trimmed video with MOV format
-    video2mov = "./assets/SubwaySurfers.mov"  # Change the file extension to MOV
-    
-    video2trimmed = "./assets/SubwaySurfers_Trimmed.mov"  # Trimmed video with MP4 format
-    
-    # convert_mp4_to_mov(video2, video2mov)  # Convert video1 to MOV format
-    
-    # trim_video_to_match_duration(video1, video2mov, video2trimmed)  # Trim video2 to match the duration of video1
-    
-    output_video = "./assets/combined.mov"  # Change the output file extension to MOV
-
-    # # Combine trimmed video2 and video1
-    combine_videos(video1, video2trimmed, output_video)
