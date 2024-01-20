@@ -95,3 +95,4 @@ urls = list(set(urls))
 
 # Returns a list of strings (stories)
 result = scrape_story(urls)
+print(result[0])
