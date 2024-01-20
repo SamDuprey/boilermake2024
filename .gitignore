@@ -1,0 +1,6 @@
+*.mp4
+*.mov
+
+main.py
+tts.py
+video.py

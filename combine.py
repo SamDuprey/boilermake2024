@@ -1,54 +1,70 @@
+import os
 import subprocess
 from moviepy.editor import VideoFileClip
 
 def trim_video_to_match_duration(video1, video2, output_video):
-    # Load video clips
-    clip1 = VideoFileClip(video1)
-    clip2 = VideoFileClip(video2)
-
-    # Trim the second video to match the duration of the first video
-    trimmed_clip2 = clip2.subclip(0, clip1.duration)
-
-    # Close the original video clips
-    clip1.close()
-    clip2.close()
-
-    # Write the trimmed video to the output file
-    trimmed_clip2.write_videofile(output_video, codec='libx264', audio_codec='aac', fps=24, remove_temp=False)
-
-
-
-def combine_videos(input_video1, input_video2, output_video):
-    # Run ffmpeg command to concatenate two videos
+    # Get the duration of video1
+    duration_video1 = VideoFileClip(video1).duration
+    
+    # Run ffmpeg command to trim video2 to the duration of video1
     cmd = [
         'ffmpeg',
-        '-i', input_video1,
-        '-i', input_video2,
-        '-filter_complex', '[0:v][1:v]hstack=inputs=2[v];[0:a][1:a]amerge=inputs=2[a]',
+        '-i', video2,
+        '-ss', '0',
+        '-t', str(duration_video1),
+        '-c:v', 'libx264',
+        '-c:a', 'aac',
+        '-strict', 'experimental',
+        '-b:a', '192k',
+        output_video
+    ]
+
+    subprocess.run(cmd)
+
+def combine_videos(video1, video2, output_video):
+    # Run ffmpeg command to overlay video1 onto video2 with audio
+    cmd = [
+        'ffmpeg',
+        '-i', video2,              # Input background video (video2)
+        '-i', video1,              # Input overlay video with audio (video1)
+        '-filter_complex', '[1:v]scale=540:960 [ov]; [0:v][ov]overlay=0:0[v]; [1:a]adelay=delays=0|0 [a]',
         '-map', '[v]',
         '-map', '[a]',
         '-c:v', 'libx264',
         '-c:a', 'aac',
         '-strict', 'experimental',
         '-b:a', '192k',
-        '-shortest',
         output_video
     ]
 
     subprocess.run(cmd)
 
-# trim
-if __name__ == "__main__":
-    video1 = "video1.mp4"
-    video2 = "video2.mp4"
-    output_video = "trimmed_video2.mp4"
+def convert_mp4_to_mov(input_mp4, output_mov):
+    # Run ffmpeg command to convert MP4 to MOV
+    cmd = [
+        'ffmpeg',
+        '-i', input_mp4,
+        '-c:v', 'libx264',
+        '-c:a', 'aac',
+        '-strict', 'experimental',
+        '-b:a', '192k',
+        output_mov
+    ]
 
-    trim_video_to_match_duration(video1, video2, output_video)
+    subprocess.run(cmd)
+
+if __name__ == "__main__":
+    video1 = "./assets/video.mov"  # Change the file extension to MOV
+    video2 = "./assets/SubwaySurfers.mp4"  # Assuming this is the trimmed video with MOV format
+    video2mov = "./assets/SubwaySurfers.mov"  # Change the file extension to MOV
     
-# combi
-if __name__ == "__main__":
-    input_video1 = "video1.mp4"
-    input_video2 = "video2.mp4"
-    output_video = "combined_video.mp4"
+    video2trimmed = "./assets/SubwaySurfers_Trimmed.mov"  # Trimmed video with MP4 format
+    
+    # convert_mp4_to_mov(video2, video2mov)  # Convert video1 to MOV format
+    
+    # trim_video_to_match_duration(video1, video2mov, video2trimmed)  # Trim video2 to match the duration of video1
+    
+    output_video = "./assets/combined.mov"  # Change the output file extension to MOV
 
-    combine_videos(input_video1, input_video2, output_video)
+    # # Combine trimmed video2 and video1
+    combine_videos(video1, video2trimmed, output_video)

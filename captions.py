@@ -1,9 +1,9 @@
 import os
+import subprocess
 import pyttsx3
-from moviepy.editor import TextClip, concatenate_videoclips
+from moviepy.editor import TextClip, concatenate_videoclips, CompositeVideoClip
 from moviepy.editor import AudioFileClip
 import re
-
 language = 'en'
 
 def remove_sentence_pauses(text):
@@ -31,7 +31,7 @@ def generate_captions_video(text, output_file):
     audio_duration = audio_clip.duration
 
     # Define video dimensions
-    video_width, video_height = 540, 960
+    video_width, video_height = 406, 720  # You can adjust these dimensions
 
     # Split the text into words
     words = text.split()
@@ -44,44 +44,61 @@ def generate_captions_video(text, output_file):
 
     # Create TextClip instances for each group of words
     for i in range(0, len(words), words_per_caption):
-        # Create a group of words for the caption
         caption_words = words[i:i + words_per_caption]
-
-        # Join the words to form the caption text
         caption_text = ' '.join(caption_words)
 
-        # Create TextClip for the caption
-        text_clip = TextClip(caption_text, fontsize=24, color='white', bg_color='black', size=(video_width, video_height))
+        # Check if the regular expression match is successful
+        match = re.search(re.escape(caption_text), text)
+        if match:
+            # Extract start and end times from the match
+            start_time = match.start() * audio_duration / len(text)
+            end_time = match.end() * audio_duration / len(text)
 
-        # Find the corresponding TTS segment in the audio
-        tts_segment_pattern = re.escape(' '.join(words[i:i + words_per_caption]))
-        match = re.search(tts_segment_pattern, text)
+            # Create TextClip for the caption with a green background
+            text_clip = TextClip(caption_text, fontsize=24, color='white', bg_color='#00FF00', size=(video_width, video_height))
 
-        # Use the start and end times of the TTS segment
-        start_time = match.start() * audio_duration / len(text)
-        end_time = match.end() * audio_duration / len(text)
+            # Set the duration and position of the text clip
+            text_clip = text_clip.set_duration(end_time - start_time).set_position(('center', 'bottom')).set_start(start_time)
 
-        # Set the duration and position of the text clip
-        text_clip = text_clip.set_duration(end_time - start_time).set_position(('center', 'bottom')).set_start(start_time)
-
-        # Append the text clip to the list
-        text_clips.append(text_clip)
+            # Append the text clip to the list
+            text_clips.append(text_clip)
 
     # Concatenate the individual caption clips into a single video clip
-    video_clip = concatenate_videoclips(text_clips, method="compose")
+    final_video = concatenate_videoclips(text_clips, method="compose")
 
     # Set the audio for the video clip
-    video_clip = video_clip.set_audio(audio_clip)
+    final_video = final_video.set_audio(audio_clip)
 
-    # Export the final video with synchronized audio
-    video_clip.write_videofile(output_file, codec='libx264', audio_codec='aac', fps=24, remove_temp=False)
+    # Export the final video with synchronized audio in MOV format
+    final_video.write_videofile(output_file, codec='libx264', audio_codec='aac', fps=24, remove_temp=False)
 
-    # Remove temporary audio and video file
+    # Remove temporary audio file
     os.remove(audio_file)
-    os.remove("videoTEMP_MPY_wvf_snd.mp4")  # Add this line to remove the temporary video file after running the script
+
+def chroma_key_video(input_video, output_video):
+    # Set the chroma key color (green in this case)
+    chroma_key_color = "0x70de77:0.1:0.2"  # Hex color code for green
+
+    # Use ffmpeg to apply chroma keying
+    cmd = [
+        "ffmpeg",
+        "-i", input_video,
+        "-vf", f"lutrgb=r=maxval:g=(val-{chroma_key_color}):b=maxval+minval",
+        "-c:a", "copy",
+        "-c:v", "qtrle",  # Use qtrle codec for QuickTime with alpha channel
+        output_video
+    ]
+
+    subprocess.run(cmd, check=True)
+
 
 if __name__ == "__main__":
     text_to_speak = "AITAH for divorcing my husband for a man who gave me a kidney? I (43F) have a genetic kidney condition and I lost the function of both of my kidneys a couple of years ago. I was on dialysis and on the transplant list. I never drank alcohol or did anything to exacerbate my disease. It’s just luck of the draw."
-    output_video_file = "./assets/video.mp4"
+    output_video_file = "./assets/video.mov"
 
-    generate_captions_video(text_to_speak, output_video_file)
+    # generate_captions_video(text_to_speak, output_video_file)
+    
+    input_green_screen_video = "./assets/video.mov"
+    output_transparent_video = "./assets/transparent_video.mov"
+
+    chroma_key_video(input_green_screen_video, output_transparent_video)
