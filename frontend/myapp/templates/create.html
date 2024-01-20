@@ -3,6 +3,8 @@
 {% block homeActive %}"nav-item"{% endblock %}
 {% block createActive %}"nav-item active"{% endblock %}
 {% block contactActive %}"nav-item"{% endblock %}
+
+
 {% block content %}
 
 <div>
@@ -46,48 +48,11 @@
   <div id="loading-text" style="display: none">
     Loading...
   </div>
-
-  <br />
-  <br />
-  <center>
-    Search Employees using Dropdown Search
-    <hr />
-    <form method="POST">
-      {% csrf_token %}
-      <select name="gender">
-        <option selected disabled="true">Select Content</option>
-        <option>r/AITAH</option>
-        <option>r/TIFU</option>
-        <option>Other</option>
-      </select>
-      <select name="designation">
-        <option selected disabled="true">Select Video</option>
-        <option>Subway Surfers</option>
-        <option>Generated Images</option>
-        <option>Minecraft</option>
-      </select>
-      <input type="submit" value="Search" />
-      <hr />
-      <table border="1">
-        <tr>
-          <th>Employee ID</th>
-          <th>Name</th>
-          <th>Gender</th>
-          <th>Designation</th>
-        </tr>
-        {% for result in data %}
-        <tr>
-          <td>{{result.emp_id}}</td>
-          <td>{{result.name}}</td>
-          <td>{{result.gender}}</td>
-          <td>{{result.designation}}</td>
-        </tr>
-        {% endfor %}
-      </table>
-    </form>
-  </center>
 </form>
 
+<video width="480" height="360" controls >
+    <source src="../static/videos/video.mp4" type="video/mp4">
+</video>
 <script>
     function submitFormAndShowLoadingCircle() {
       // Get selected values from dropdowns
