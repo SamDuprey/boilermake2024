@@ -1,3 +1,8 @@
 beautifulsoup4==4.11.1
 Requests==2.31.0
 selenium==4.16.0
+Pillow==9.5.0
+pyttsx3==2.90
+moviepy==1.0.3
+imageio==2.33.1
+openai==1.8.0

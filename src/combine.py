@@ -56,17 +56,4 @@ def combine_videos(video1, video2, output_video):
 
     subprocess.run(cmd)
 
-def convert_mp4_to_mov(input_mp4, output_mov):
-    # Run ffmpeg command to convert MP4 to MOV
-    cmd = [
-        'ffmpeg',
-        '-i', input_mp4,
-        '-c:v', 'libx264',
-        '-c:a', 'aac',
-        '-strict', 'experimental',
-        '-b:a', '192k',
-        output_mov
-    ]
-
-    subprocess.run(cmd)
 
