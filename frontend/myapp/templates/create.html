@@ -7,10 +7,12 @@
 
 {% block content %}
 <br />
-<p class="createDescription">This is our create page. Here you can choose from a variety of options to create different videos</p>
+<p class="createDescription center">This is our create page.</p>
+<p class="createDescription center">Here you can choose from a variety of options to create different videos</p>
 
-<div>
-  <form class="center">
+
+<div class="center">
+  {% comment %} <form class="center"> {% endcomment %}
     <label class="dropdownLabel" for="dropdown1">Content:</label>
     <select class="dropdown" id="dropdown1" name="dropdown1">
       <option value="AITAH">r/AITAH</option>
@@ -20,32 +22,31 @@
 </div>
 
   <br />
-<div>
+<div class="center">
   <label class="dropdownLabel" for="dropdown2">Video:</label>
   <select class="dropdown" id="dropdown2" name="dropdown2">
     <option value="Subway Surfers">Subway Surfers</option>
-    <option value="Generated Images">Generated Images</option>
+    <option value="Generated Images">General Videos</option>
     <option value="Minecraft Parkour">Minecraft Parkour</option>
   </select>
 </div>
-<div class="generateBtn">
-  <button type="button" onclick="submitFormAndShowLoadingCircle()">
-    Generate
-  </button>
-</div>
-  <div id="loading-circle" style="display: none">
-    <div class="spinner-border text-primary" role="status">
-      <span class="sr-only">Loading...</span>
-    </div>
-  </div>
-  <div id="loading-text" style="display: none">
-    Loading...
-  </div>
-</form>
 
+<div class="container hover">
+  <a href="#" class="button generateBtn" onclick="submitFormAndShowLoadingCircle()">Generate</a>
+</div> 
+
+<div id="loading-circle" style="display: none">
+  <div class="spinner-border text-primary" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
+<div id="loading-text" style="display: none">
+  Loading...
+</div>
+{% comment %} </form> {% endcomment %}
 
 <div class="center">
-  <video class="middle" width="480" height="360" controls class="video">
+  <video class="center video" width="480" height="360" controls class="video">
     <source src="../static/videos/video.mp4" type="video/mp4">
   </video>
 </div>
