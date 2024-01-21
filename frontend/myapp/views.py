@@ -42,4 +42,5 @@ def real_posts(request):
 def history(request):
     return render(request, "history.html")
 
-    
+def custom(request):
+    return render(request, "custom.html")
