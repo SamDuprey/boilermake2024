@@ -36,7 +36,7 @@ def execute_video(request):
     file_path = find_file_path(4, "./assets/minecraft/minecraft")
   elif (dropdown2_value == "Generated Images"):
     file_path = find_file_path(8, "./assets/history/history")
-  generate_video(results, file_path, "./assets/output.mov")
+  generate_video(results, file_path, "./static/videos/test_output.mov")
   return JsonResponse({'result': results})
 
 def execute_custom(request):
