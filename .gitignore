@@ -1,5 +1,6 @@
 *.mp4
 *.mov
+*.zip
 
 env
 __pycache__
