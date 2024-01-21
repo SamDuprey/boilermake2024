@@ -1,8 +1,17 @@
 {% extends "base.html" %}
 {% block title %}Create Page{% endblock %}
 {% block homeActive %}"nav-item"{% endblock %}
-{% block createActive %}"nav-itemactive"{% endblock %} 
+{% block createActive %}"nav-itemactive"{% endblock %}
 {% block content %}
+
+{% comment %}
+{% extends "base.html" %}
+{% block title %}Create Page{% endblock %}
+{% block homeActive %}"nav-item"{% endblock %}
+{% block createActive %}"nav-itemactive"{% endblock %}
+{% block content %}
+{% endcomment %}
+
 <br />
 <p class="createDescription center">
   Choose the Subreddit that you want the text from and the background video from
@@ -16,9 +25,13 @@
     <option value="https://www.reddit.com/r/AITAH/">r/AITAH</option>
     <option value="https://www.reddit.com/r/tifu/">r/TIFU</option>
     <option value="https://www.reddit.com/r/stories/">r/stories</option>
-    <option value="https://www.reddit.com/r/wholesomestories/">r/wholesomestories</option>
+    <option value="https://www.reddit.com/r/wholesomestories/">
+      r/wholesomestories
+    </option>
     <option value="https://www.reddit.com/r/confessions/">r/confessions</option>
-    <option value="https://www.reddit.com/r/relationship_advice/">r/relationship_advice</option>
+    <option value="https://www.reddit.com/r/relationship_advice/">
+      r/relationship_advice
+    </option>
   </select>
 </div>
 
@@ -32,6 +45,7 @@
   </select>
 </div>
 
+{% comment %} Generate Video Button {% endcomment %}
 <div class="container hover">
   <a
     href="#"
@@ -41,6 +55,12 @@
   >
 </div>
 
+{% comment %} Download Video {% endcomment %}
+<div class="container hover">
+  <a href="{% url 'download_video' %}" class="button generateBtn">Download</a>
+</div>
+
+{% comment %} Loading circle {% endcomment %}
 <div id="loading-circle" style="display: none">
   <div class="spinner-border text-primary" role="status">
     <span class="sr-only">Loading...</span>
@@ -48,9 +68,11 @@
 </div>
 <div id="loading-text" style="display: none">Loading...</div>
 
+{% comment %} Embed Video {% endcomment %}
 <div class="center">
   <video class="center video" width="480" height="360" controls class="video">
-    <source src="../static/videos/video.mp4" type="video/mp4" />
+    <source src="../static/videos/test_output.mov" type="video/quicktime" />
+    Your browser does not support rendering MOV videos.
   </video>
 </div>
 
