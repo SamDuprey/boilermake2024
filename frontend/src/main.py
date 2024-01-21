@@ -27,6 +27,8 @@ def generate_video(text, background_video, output_file):
     
     # applys chroma key to remove the green background
     apply_chroma_key(trimmed_background_video_file, captions_video_file, output_file, similarity=0.3, blend=0.3)
+    
+    return str(output_file)
 
 # if __name__ == "__main__":
 #     # text_to_speak = "AITAH for divorcing my husband for a man who gave me a kidney? I (43F) have a genetic kidney condition and I lost the function of both of my kidneys a couple of years ago. I was on dialysis and on the transplant list. I never drank alcohol or did anything to exacerbate my disease. It’s just luck of the draw."
@@ -53,7 +55,4 @@ def generate_video(text, background_video, output_file):
 #     # apply_chroma_key(trimmed_background_video_file, captions_video_file, output_path, similarity=0.3, blend=0.3)
     
 #     generate_video(text_to_speak, "./assets/SubwaySurfers.mov", "./assets/test_output.mov")
-    
-
-
     
