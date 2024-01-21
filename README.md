@@ -1,7 +1,7 @@
 # Artikulate
 
 ## Inspiration
-The shift towards short-term content in recent years, particularly on social media platforms like TikTok, reflects a broader trend in the way the modern generation consumes and engages with information. Platforms like TikTok thrive on engaging visuals and user-generated content, catering to decreasing attention spans.
+The shift towards short-term content in recent years, particularly on social media platforms like TikTok, reflects a broader trend in the way the modern generation consumes and engages with information. Platforms like TikTok thrive on engaging visuals and user-generated content, catering to decreasing attention spans. We aimed to create a product capable of transorming traditional text regarding realms like news, education content, and stories, into a more engaging format for the newer generations.
 
 ## What it does
 
