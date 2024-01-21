@@ -34,7 +34,7 @@ def analyze_caption(caption_text):
     
     punctuation_counts = count_punctuation(caption_text)
 
-    return .15 * total_syllables + .177 * punctuation_counts[0] + .209* punctuation_counts[1] + .310 * punctuation_counts[2]
+    return .148 * total_syllables + .177 * punctuation_counts[0] + .209 * punctuation_counts[1] + .310 * punctuation_counts[2]
 
 
 def create_audio(text, output_file):
@@ -64,22 +64,27 @@ def remove_sentence_pauses(text):
     # Remove periods followed by a space to avoid pauses at the end of sentences
     return re.sub(r'\. ', '. ', text)
 
+def fontlist():
+  print(TextClip.list('font'))
 
 def audio_length(audio_file):
     # Get the duration of the audio file in seconds
     result = subprocess.run(['ffprobe', '-i', audio_file, '-show_entries', 'format=duration', '-v', 'quiet', '-of', 'csv=%s' % ("p=0")], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     return float(result.stdout)
 
-def generate_captions_video(text, output_file):
+def generate_captions_video(text, output_file, subway):
     # Convert text to speech using pyttsx3
     audio_file = create_audio(text, "temp_audio.wav")
+    fontlist()
 
     # Load the audio clip to get its duration
     audio_clip = AudioFileClip(audio_file)
     audio_duration = audio_clip.duration
-
+    video_width, video_height = 406, 720
     # Define video dimensions
-    video_width, video_height = 406, 720  # You can adjust these dimensions
+    if (not subway):
+        video_width = 608 # You can adjust these dimensions
+        video_height = 1080
 
     # Split the text into words
     words = text.split()
@@ -96,11 +101,12 @@ def generate_captions_video(text, output_file):
         caption_text = ' '.join(caption_words)
             # Extract start and end times from the match
         end_time = start_time + analyze_caption(caption_text)
+
         
         
         # Create TextClip for the caption with a green background
-        text_clip = TextClip(caption_text, fontsize=30, color='white', bg_color='#00FF00', font='Helvetica-Bold', size=(video_width, video_height))
-
+        #text_clip = TextClip(caption_text, fontsize=35, color='white', bg_color='#00FF00', font='Bangers', stroke_color='white', size=(video_width, video_height))
+        text_clip = TextClip(caption_text, fontsize=35, color='white', bg_color='#00FF00', font='Arial Rounded MT Bold', stroke_color='black', size=(video_width, video_height))
             # Set the duration and position of the text clip
         text_clip = text_clip.set_duration(end_time - start_time).set_position(('center', 'bottom')).set_start(start_time)
 

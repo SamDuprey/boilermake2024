@@ -19,7 +19,7 @@ def generate_video(text, background_video, output_file):
     trimmed_background_video_file = "./assets/trimmed.mov"
 
     # generates video with tts and caption with green-screen background
-    generate_captions_video(text, captions_video_file)
+    generate_captions_video(text, captions_video_file, "subway" in background_video_name)
     
 
     # trims the background video to be the same length as the caption
