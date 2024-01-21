@@ -23,13 +23,19 @@ def home(request):
 def create(request):
     return render(request, "create.html")
 
-def options(request):
-    return render(request, "options.html")
+# def options(request):
+#     return render(request, "options.html")
 
 def story_options(request):
     return render(request, "story_options.html")
 
 def ai(request):
     return render(request, "ai.html")
+
+def real_posts(request):
+    return render(request, "real_posts.html")
+
+def history(request):
+    return render(request, "history.html")
 
     

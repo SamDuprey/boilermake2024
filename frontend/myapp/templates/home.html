@@ -1,5 +1,8 @@
 {% extends "base.html" %} {% block title %}Home Page{% endblock %}
 
+{% block homeActive %}"nav-item active"{% endblock %}
+{% block createActive %}"nav-item"{% endblock %}
+
 {% block content %}
 
 <div class="mainContainer">
@@ -16,7 +19,7 @@
     </div>
 
     <div class="container hover">
-        <a href="{% url 'options' %}" class="button">Begin!</a>
+        <a href="{% url 'create' %}" class="button">Begin!</a>
     </div> 
 </div>
 
