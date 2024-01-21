@@ -59,3 +59,9 @@ def history(request):
 
 def custom(request):
     return render(request, "custom.html")
+
+def history_options(request):
+    return render(request, "history_options.html")
+
+def history_custom(request):
+    return render(request, "history_custom.html")

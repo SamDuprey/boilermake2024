@@ -1,0 +1,18 @@
+{% extends "base.html" %} {% block title %}Home Page{% endblock %}
+
+{% block content %}
+
+<div class="mainContainer">
+    <div class="questionText">
+        <p>We webscrape history.com to help you generate informative videos. Would you like to use one of our given topic options or insert your own History.com article link?</p>
+    </div>
+    
+    <div class="container hover">
+        <a href="{% url 'history' %}" class="button">Given Topics</a>
+    </div> 
+    <div class="container hover">
+        <a href="{% url 'history_custom' %}" class="button">Custom Link</a>
+    </div> 
+</div>
+
+{% endblock %}
