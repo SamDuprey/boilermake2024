@@ -11,18 +11,12 @@
 
 <br />
 
-<!-- Topic Dropdown -->
-<div class="center" id="topicDropdown">
-    <label class="dropdownLabel" for="dropdown1">Topic:</label>
-    <select class="dropdown" id="dropdown1" name="dropdown1">
-        <option value="https://www.history.com/topics/american-civil-war/american-civil-war-history">American Civil War</option>
-        <option value="https://www.history.com/topics/cold-war/berlin-wall">Berlin Wall</option>
-        <option value="https://www.history.com/topics/middle-ages/black-death">Black Death</option>
-        <option value="https://www.history.com/topics/black-history/harriet-tubman">Harriet Tubman</option>
-        <option value="https://www.history.com/topics/exploration/marco-polo">Marco Polo</option>
-        <option value="https://www.history.com/topics/world-war-i/world-war-i-history">World War I</option>
-    </select>
+<!-- Custom Input -->
+<div class="center" id="customInput" style="display: flex;">
+    <label class="dropdownLabel" for="dropdown1">Custom:</label>
+    <input class="dropdown" id="dropdown1" name="dropdown1" placeholder="ex. https://www.history.com/topics/industrial-revolution/industrial-revolution">
 </div>
+
 
 <br />
 <div class="center">
@@ -35,7 +29,7 @@
 </div>
 
 <div class="container hover">
-  <a href="#" class="button generateBtn" onclick="submitFormAndShowLoadingCircle(this)">Generate</a>
+  <a href="#" class="button generateBtn" onclick="submitFormAndShowLoadingCircle()">Generate</a>
 </div> 
 
 <div id="loading-circle" style="display: none">
@@ -54,8 +48,7 @@
 </div>
 
 <script>
-    function submitFormAndShowLoadingCircle(button) {
-      button.innerText = "Regenerate";
+    function submitFormAndShowLoadingCircle() {
       // Get selected values from dropdowns
       var dropdown1Value = document.getElementById("dropdown1").value;
       var dropdown2Value = document.getElementById("dropdown2").value;
@@ -64,8 +57,7 @@
       document.getElementById("loading-circle").style.display = "block";
   
       // Make an AJAX request to execute_dummy endpoint with parameters
-
-      fetch(`/execute_history/?dropdown1=${dropdown1Value}&dropdown2=${dropdown2Value}`)
+      fetch(`/execute_dummy/?dropdown1=${dropdown1Value}&dropdown2=${dropdown2Value}`)
         .then(function(response) {
           return response.json();
         })

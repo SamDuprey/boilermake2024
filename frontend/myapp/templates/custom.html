@@ -7,24 +7,16 @@
 
 {% block content %}
 <br />
-<p class="createDescription center">We webscrape history.com to help you generate informative videos. Either choose one of the given topics or insert your own history.com article link. Choose your video and then hit generate to let the magic happen!</p>
-
+<p class="createDescription center">Create your custom video here! Enter your text in the input box below, select the type of video you want, and then hit generate!</p>
 <br />
 
-<!-- Topic Dropdown -->
-<div class="center" id="topicDropdown">
-    <label class="dropdownLabel" for="dropdown1">Topic:</label>
-    <select class="dropdown" id="dropdown1" name="dropdown1">
-        <option value="https://www.history.com/topics/american-civil-war/american-civil-war-history">American Civil War</option>
-        <option value="https://www.history.com/topics/cold-war/berlin-wall">Berlin Wall</option>
-        <option value="https://www.history.com/topics/middle-ages/black-death">Black Death</option>
-        <option value="https://www.history.com/topics/black-history/harriet-tubman">Harriet Tubman</option>
-        <option value="https://www.history.com/topics/exploration/marco-polo">Marco Polo</option>
-        <option value="https://www.history.com/topics/world-war-i/world-war-i-history">World War I</option>
-    </select>
+<!-- Custom Input -->
+<div class="center customBox" id="customInput">
+    <label class="dropdownLabel" for="dropdown2">Text:</label>
+    <input class="customText dropdown" id="dropdown1" name="dropdown1" placeholder="Insert video text here...">
 </div>
-
 <br />
+
 <div class="center">
   <label class="dropdownLabel" for="dropdown2">Video:</label>
   <select class="dropdown" id="dropdown2" name="dropdown2"> 
@@ -33,9 +25,11 @@
     <option value="Minecraft Parkour">Minecraft Parkour</option>
   </select>
 </div>
+<br />
+
 
 <div class="container hover">
-  <a href="#" class="button generateBtn" onclick="submitFormAndShowLoadingCircle(this)">Generate</a>
+  <a href="#" class="button generateBtn" onclick="submitFormAndShowLoadingCircle()">Generate</a>
 </div> 
 
 <div id="loading-circle" style="display: none">
@@ -54,8 +48,7 @@
 </div>
 
 <script>
-    function submitFormAndShowLoadingCircle(button) {
-      button.innerText = "Regenerate";
+    function submitFormAndShowLoadingCircle() {
       // Get selected values from dropdowns
       var dropdown1Value = document.getElementById("dropdown1").value;
       var dropdown2Value = document.getElementById("dropdown2").value;
@@ -64,8 +57,7 @@
       document.getElementById("loading-circle").style.display = "block";
   
       // Make an AJAX request to execute_dummy endpoint with parameters
-
-      fetch(`/execute_history/?dropdown1=${dropdown1Value}&dropdown2=${dropdown2Value}`)
+      fetch(`/execute_dummy/?dropdown1=${dropdown1Value}&dropdown2=${dropdown2Value}`)
         .then(function(response) {
           return response.json();
         })
@@ -88,7 +80,6 @@
       //document.querySelector("form").submit();
     }
   </script>
-
 
 
 {% endblock %}

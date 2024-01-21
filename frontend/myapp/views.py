@@ -15,11 +15,16 @@ from src.captions import generate_captions_video
 
 def execute_dummy(request):
   dropdown1_value = request.GET.get('dropdown1', '')
-  dropdown2_value = request.GET.get('dropdown2', '')
 
   result = generate_story(dropdown1_value)
-  generate_video(result, "./assets/SubwaySurfers.mov", "./static/videos/test_output.mov")
+  #generate_video(result, "./assets/SubwaySurfers.mov", "./static/videos/test_output.mov")
   return JsonResponse({'result': result})
+
+def execute_video(request):
+  results = request.GET.get('param1', '')
+  dropdown2_value = request.GET.get('param2', '')
+  generate_video(results, "./assets/SubwaySurfers.mov", "./static/videos/test_output.mov")
+  return JsonResponse({'result': results})
 
 def execute_real(request):
   dropdown1_value = request.GET.get('dropdown1', '')
@@ -75,4 +80,11 @@ def real_posts(request):
 def history(request):
     return render(request, "history.html")
 
-    
+def custom(request):
+    return render(request, "custom.html")
+
+def history_options(request):
+    return render(request, "history_options.html")
+
+def history_custom(request):
+    return render(request, "history_custom.html")
