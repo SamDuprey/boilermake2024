@@ -8,17 +8,6 @@
 {% block content %}
 <br />
 <p class="createDescription center">We webscrape history.com to help you generate informative videos. Either choose one of the given topics or insert your own history.com article link. Choose your video and then hit generate to let the magic happen!</p>
-<br />
-
-
-<div class="center">
-    <label class="dropdownLabel" for="dropdown1">Content:</label>
-    <select class="dropdown" id="contentDropdown" name="contentDropdown" onchange="toggleOptions()">
-        <option value="givenTopic">Given Topic Options</option>
-        <option value="customLink">Custom history.com Article Link</option>
-    </select>
-</div>
-
 
 <br />
 
@@ -34,13 +23,6 @@
         <option value="worldWarOne">World War I</option>
     </select>
 </div>
-
-<!-- Custom Input -->
-<div class="center" id="customInput" style="display: none;">
-    <label class="dropdownLabel" for="dropdown1">Custom:</label>
-    <input class="dropdown" id="dropdown1" name="dropdown1" placeholder="ex. https://www.history.com/topics/industrial-revolution/industrial-revolution">
-</div>
-
 
 <br />
 <div class="center">
@@ -105,24 +87,6 @@
     }
   </script>
 
-  <script>
-    function toggleOptions() {
-        var contentDropdownValue = document.getElementById("contentDropdown").value;
-
-        // Get references to the topic and custom input elements
-        var topicDropdown = document.getElementById("topicDropdown");
-        var customInput = document.getElementById("customInput");
-
-        // Toggle visibility based on the selected option
-        if (contentDropdownValue === "givenTopic") {
-            topicDropdown.style.display = "flex";
-            customInput.style.display = "none";
-        } else if (contentDropdownValue === "customLink") {
-            topicDropdown.style.display = "none";
-            customInput.style.display = "flex";
-        }
-    }
-</script>
 
 
 {% endblock %}

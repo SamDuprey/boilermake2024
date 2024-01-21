@@ -46,6 +46,16 @@
   width: 500px;
   margin-bottom: 5px;
 }
+.customText {
+    height: 40px;
+    vertical-align: top;
+    box-sizing: border-box;
+    word-wrap: break-word;
+}
+.customBox {
+    vertical-align: top;
+    box-sizing: border-box;
+}
 .space {
   margin: 10px;
 }

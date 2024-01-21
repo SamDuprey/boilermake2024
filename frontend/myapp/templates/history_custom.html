@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block title %}Create Page{% endblock %}
+{% block homeActive %}"nav-item"{% endblock %}
+{% block createActive %}"nav-item active"{% endblock %}
+
+
+{% block content %}
+<br />
+<p class="createDescription center">We webscrape history.com to help you generate informative videos. Either choose one of the given topics or insert your own history.com article link. Choose your video and then hit generate to let the magic happen!</p>
+
+<br />
+
+<!-- Custom Input -->
+<div class="center" id="customInput" style="display: flex;">
+    <label class="dropdownLabel" for="dropdown1">Custom:</label>
+    <input class="dropdown" id="dropdown1" name="dropdown1" placeholder="ex. https://www.history.com/topics/industrial-revolution/industrial-revolution">
+</div>
+
+
+<br />
+<div class="center">
+  <label class="dropdownLabel" for="dropdown2">Video:</label>
+  <select class="dropdown" id="dropdown2" name="dropdown2"> 
+    <option value="Subway Surfers">Subway Surfers</option>
+    <option value="Generated Images">General Videos</option>
+    <option value="Minecraft Parkour">Minecraft Parkour</option>
+  </select>
+</div>
+
+<div class="container hover">
+  <a href="#" class="button generateBtn" onclick="submitFormAndShowLoadingCircle()">Generate</a>
+</div> 
+
+<div id="loading-circle" style="display: none">
+  <div class="spinner-border text-primary" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
+<div id="loading-text" style="display: none">
+  Loading...
+</div>
+
+<div class="center">
+  <video class="center video" width="480" height="360" controls class="video">
+    <source src="../static/videos/video.mp4" type="video/mp4">
+  </video>
+</div>
+
+<script>
+    function submitFormAndShowLoadingCircle() {
+      // Get selected values from dropdowns
+      var dropdown1Value = document.getElementById("dropdown1").value;
+      var dropdown2Value = document.getElementById("dropdown2").value;
+  
+      // Show the loading circle
+      document.getElementById("loading-circle").style.display = "block";
+  
+      // Make an AJAX request to execute_dummy endpoint with parameters
+      fetch(`/execute_dummy/?dropdown1=${dropdown1Value}&dropdown2=${dropdown2Value}`)
+        .then(function(response) {
+          return response.json();
+        })
+        .then(function(data) {
+          // Handle the response data
+          console.log('Result:', data.result);
+          document.getElementById("loading-text").innerText = data.result;
+          document.getElementById("loading-text").style.display = "block";
+          document.getElementById("loading-circle").style.display = "none";
+          // You can update the page or handle the result as needed
+        })
+        .catch(function(error) {
+          console.error('Error:', error);
+          document.getElementById("loading-text").innerText = "Error";
+          document.getElementById("loading-text").style.display = "block";
+          document.getElementById("loading-circle").style.display = "none";
+        });
+  
+      // Submit the form
+      //document.querySelector("form").submit();
+    }
+  </script>
+
+
+
+{% endblock %}
