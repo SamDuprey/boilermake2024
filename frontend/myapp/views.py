@@ -48,15 +48,6 @@ def execute_history(request):
   generate_video(result, "./assets/SubwaySurfers.mov", "./static/videos/test_output.mov")
   return JsonResponse({'result': result})
 
-def execute_history_custom(request):
-  dropdown1_value = request.GET.get('dropdown1', '')
-  dropdown2_value = request.GET.get('dropdown2', '')
-
-  result = scrape_history(dropdown1_value)
-
-  generate_video(result, "./assets/SubwaySurfers.mov", "./static/videos/test_output.mov")
-  return JsonResponse({'result': result})
-
 # Create your views here.
 
 def home(request):
