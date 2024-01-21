@@ -52,11 +52,6 @@
   >
 </div>
 
-{% comment %} Download Video {% endcomment %}
-<div class="container hover">
-  <a href="{% url 'download_video' %}" class="button generateBtn">Download</a>
-</div>
-
 <div class="center" id="loading-circle1" style="display: none">
   <div class="spinner-border text-primary" role="status">
     <span class="sr-only">Loading...</span>
@@ -80,6 +75,11 @@
     <span class="sr-only">Loading...</span>
   </div>
   <div id="loading-text" style="padding-left: 20px;">Generating video... This may take a while</div>
+</div>
+
+{% comment %} Download Video {% endcomment %}
+<div class="container hover" id="download_video_btn" style="display: none">
+  <a href="{% url 'download_video' %}" class="button generateBtn">Download</a>
 </div>
 
 <script>
@@ -141,6 +141,7 @@
         document.getElementById("loading-text").innerText = "Error";
         document.getElementById("loading-text").style.display = "flex";
         document.getElementById("generate-btn").innerText = "Re-Generate";
+        document.getElementById("download_video_btn").style.display = "flex";
       });
   }
 </script>
