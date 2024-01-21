@@ -4,4 +4,5 @@ pip install pyttsx3
 pip install moviepy
 pip install imageio[ffmpeg]
 brew install ffmpeg # mac only:  windows is here: https://ffmpeg.org/download.html
+brew install portaudio libffi
 
