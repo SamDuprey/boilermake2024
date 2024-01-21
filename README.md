@@ -1,7 +1,18 @@
-# boilermake2024
+# Artikulate
 
-Set environment variable: python -m venv env
+## Inspiration
+The shift towards short-term content in recent years, particularly on social media platforms like TikTok, reflects a broader trend in the way the modern generation consumes and engages with information. Platforms like TikTok thrive on engaging visuals and user-generated content, catering to decreasing attention spans.
 
-Run Django Server: in frontend/ python3 manage.py runserver
+## What it does
 
-How to run project: Good Luck
+## How we built it
+
+## Challenges we ran into
+
+## Accomplishments that we're proud of
+
+## What we learned
+Many of the technologies used in Artikulate were new to us prior to this hackathon. We learned to use Django to create our web framework, we learned to webscrape, we learned to use Open AI API to generate text and text-to-speech audio, and we learned to run FFmpeg commands in terminal to edit and encode videos.
+
+## What's next for Artikulate
+We have only worked on AI generative features and web scraping for Reddit and History.com. The uses of Artikulate could be expanded to other different websites such Wikipedia or the New York Times to make information more accessible to emerging generations.
