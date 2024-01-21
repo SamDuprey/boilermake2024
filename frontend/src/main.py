@@ -9,19 +9,21 @@ def delete_pycache():
 
 def generate_video(text, background_video, output_file):
     captions_video_file =  "./assets/captions.mov"
-    
+    print("second parameter is " + str(background_video))
     # Extract the file name without extension from the background video path
-    background_video_name = os.path.splitext(os.path.basename(background_video))[0]
+    #background_video_name = os.path.splitext(os.path.basename(background_video))[0]
+    background_video_name = background_video
+    print("background_video_name" + background_video_name)
 
     # Use the extracted file name for the trimmed background video
-    trimmed_background_video_file = f"./assets/{background_video_name}_trimmed.mov"
+    trimmed_background_video_file = "./assets/trimmed.mov"
 
     # generates video with tts and caption with green-screen background
     generate_captions_video(text, captions_video_file)
     
-    
+
     # trims the background video to be the same length as the caption
-    trim_video_to_match_duration(captions_video_file, background_video, trimmed_background_video_file)
+    trim_video_to_match_duration(captions_video_file, background_video_name, trimmed_background_video_file)
     
     # applys chroma key to remove the green background
     apply_chroma_key(trimmed_background_video_file, captions_video_file, output_file, similarity=0.3, blend=0.3)

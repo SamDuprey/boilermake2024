@@ -17,26 +17,36 @@ def execute_dummy(request):
   dropdown1_value = request.GET.get('dropdown1', '')
 
   result = generate_story(dropdown1_value)
-  #generate_video(result, "./assets/SubwaySurfers.mov", "./static/videos/test_output.mov")
+  
   return JsonResponse({'result': result})
+
+def find_file_path(limit, file_dir):
+   num = random.randint(1, limit)
+   file_dir = file_dir + str(num) + ".mov"
+   print("returned file_dir of " + file_dir)
+   return file_dir
 
 def execute_video(request):
   results = request.GET.get('param1', '')
   dropdown2_value = request.GET.get('param2', '')
-  generate_video(results, "./assets/SubwaySurfers.mov", "./static/videos/test_output.mov")
+  file_path = ""
+  if (dropdown2_value == "Subway Surfers"):
+    file_path = find_file_path(2, "./assets/subway/subway")
+  elif (dropdown2_value == "Minecraft Parkour"):
+    file_path = find_file_path(4, "./assets/minecraft/minecraft")
+  elif (dropdown2_value == "Generated Images"):
+    file_path = find_file_path(8, "./assets/history/history")
+  generate_video(results, file_path, "./assets/output.mov")
   return JsonResponse({'result': results})
 
 def execute_real(request):
   dropdown1_value = request.GET.get('dropdown1', '')
-  dropdown2_value = request.GET.get('dropdown2', '')
 
   urls = scrape(dropdown1_value)
   urls.pop(0)
   urls = list(set(urls))
   # Returns a list of strings (stories)
   result = scrape_story(urls)[random.randint(0, len(urls) - 1)]
-
-  generate_video(result, "./assets/SubwaySurfers.mov", "./static/videos/test_output.mov")
   return JsonResponse({'result': result})
 # Create your views here.
 

@@ -13,12 +13,12 @@
 <div class="center">
   <label class="dropdownLabel" for="dropdown1">Content:</label>
   <select class="dropdown" id="dropdown1" name="dropdown1">
-    <option value="https://www.reddit.com/r/AITAH/">r/AITAH</option>
-    <option value="https://www.reddit.com/r/tifu/">r/TIFU</option>
-    <option value="https://www.reddit.com/r/stories/">r/stories</option>
-    <option value="https://www.reddit.com/r/wholesomestories/">r/wholesomestories</option>
-    <option value="https://www.reddit.com/r/confessions/">r/confessions</option>
-    <option value="https://www.reddit.com/r/relationship_advice/">r/relationship_advice</option>
+    <option value="AITAH">r/AITAH</option>
+    <option value="TIFU">r/TIFU</option>
+    <option value="stories">r/stories</option>
+    <option value="wholesomestories">r/wholesomestories</option>
+    <option value="confessions">r/confessions</option>
+    <option value="relationship_advice">r/relationship_advice</option>
   </select>
 </div>
 
@@ -35,23 +35,35 @@
 <div class="container hover">
   <a
     href="#"
+    id="generate-btn"
     class="button generateBtn"
     onclick="submitFormAndShowLoadingCircle(this)"
     >Generate</a
   >
 </div>
 
-<div id="loading-circle" style="display: none">
+<div class="center" id="loading-circle1" style="display: none; margin: 20px;">
   <div class="spinner-border text-primary" role="status">
     <span class="sr-only">Loading...</span>
   </div>
+  <div id="loading-text" style="padding-left: 20px;">Generating text... This may take a while</div>
 </div>
-<div id="loading-text" style="display: none">Loading...</div>
 
 <div class="center">
+  <p id="ai-text" style="display: flex"></p>
+</div>
+
+<div class="center" id="generated-video" style="display: none">
   <video class="center video" width="480" height="360" controls class="video">
     <source src="../static/videos/video.mp4" type="video/mp4" />
   </video>
+</div>
+
+<div class="center" id="loading-circle2" style="display: none; margin: 20px;">
+  <div class="spinner-border text-primary" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+  <div id="loading-text" style="padding-left: 20px;">Generating video... This may take a while</div>
 </div>
 
 <script>
@@ -62,33 +74,58 @@
     var dropdown2Value = document.getElementById("dropdown2").value;
 
     // Show the loading circle
-    document.getElementById("loading-circle").style.display = "block";
+    document.getElementById("loading-circle1").style.display = "flex";
+    document.getElementById("loading-text").innerText = "Generating text... This may take a while";
 
     // Make an AJAX request to execute_dummy endpoint with parameters
-    fetch(
-      `/execute_real/?dropdown1=${dropdown1Value}&dropdown2=${dropdown2Value}`
-    )
+    fetch(`/execute_real/?dropdown1=${dropdown1Value}`)
       .then(function (response) {
         return response.json();
       })
       .then(function (data) {
-        // Handle the response data
-        console.log("Result:", data.result);
-        document.getElementById("loading-text").innerText = data.result;
-        document.getElementById("loading-text").style.display = "block";
-        document.getElementById("loading-circle").style.display = "none";
+        // Handle the response data from dummy_execute
+        console.log("Result from dummy_execute:", data.result);
+        document.getElementById("loading-circle1").style.display = "none";
+        document.getElementById("loading-circle2").style.display = "flex";
+        document.getElementById("ai-text").innerText = data.result;
+        document.getElementById("loading-text").innerText = "Generating video... This may take a while";
+        document.getElementById("ai-text").style.display = "flex";
+        
+        // Call the function for the second AJAX request
+        performSecondRequest(data.result, dropdown2Value);
+      })
+      .catch(function (error) {
+        console.error("Error:", error);
+        document.getElementById("loading-circle1").style.display = "none";
+        document.getElementById("loading-circle2").style.display = "none";
+        document.getElementById("loading-text").innerText = "Error";
+        document.getElementById("loading-text").style.display = "flex";
+        document.getElementById("generate-btn").innerText = "Re-Generate";
+      });
+  }
+
+  function performSecondRequest(param1, param2) {
+    document.getElementById("generated-video").style.display = "none";
+    // Make a second AJAX request to dummy_video with the parameters
+    fetch(`/execute_video/?param1=${param1}&param2=${param2}`)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        // Handle the response data from dummy_video
+        console.log("Result from execute_video:", data.result);
+        document.getElementById("loading-circle2").style.display = "none";
+        document.getElementById("generated-video").style.display = "flex";
+        document.getElementById("generate-btn").innerText = "Re-Generate";
         // You can update the page or handle the result as needed
       })
       .catch(function (error) {
         console.error("Error:", error);
+        document.getElementById("loading-circle2").style.display = "none";
         document.getElementById("loading-text").innerText = "Error";
-        document.getElementById("loading-text").style.display = "block";
-        document.getElementById("loading-circle").style.display = "none";
+        document.getElementById("loading-text").style.display = "flex";
+        document.getElementById("generate-btn").innerText = "Re-Generate";
       });
-
-    // Submit the form
-    //document.querySelector("form").submit();
   }
 </script>
-
 {% endblock %}

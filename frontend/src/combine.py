@@ -8,16 +8,17 @@ def trim_video_to_match_duration(video1, video2, output_video):
     
     # Run ffmpeg command to trim video2 to the duration of video1
     cmd = [
-        'ffmpeg',
-        '-i', video2,
-        '-ss', '0',
-        '-t', str(duration_video1),
-        '-c:v', 'libx264',
-        '-c:a', 'aac',
-        '-strict', 'experimental',
-        '-b:a', '192k',
-        output_video
-    ]
+    'ffmpeg',
+    '-i', video2,
+    '-ss', '0',
+    '-t', str(duration_video1),
+    '-c:v', 'libx264',
+    '-c:a', 'aac',
+    '-strict', 'experimental',
+    '-b:a', '192k',
+    '-y',  # Add the -y flag here
+    output_video
+]
 
     subprocess.run(cmd)
 
@@ -33,27 +34,28 @@ def apply_chroma_key(subway_path, captions_path, output_path, similarity=0.1, bl
         "-filter_complex", f"[1:v]colorkey={chroma_key_color}:{similarity}:{blend}[ckout];[0:v][ckout]overlay[out]",
         "-map", "[out]",
         "-map", "1:a",
+        "-y",
         output_path
     ]
 
     subprocess.run(cmd, check=True)
 
-def combine_videos(video1, video2, output_video):
+#def combine_videos(video1, video2, output_video):
     # Run ffmpeg command to overlay video1 onto video2 with audio
-    cmd = [
-        'ffmpeg',
-        '-i', video2,              # Input background video (video2)
-        '-i', video1,              # Input overlay video with audio (video1)
-        '-filter_complex', '[1:v]scale=540:960 [ov]; [0:v][ov]overlay=0:0[v]; [1:a]adelay=delays=0|0 [a]',
-        '-map', '[v]',
-        '-map', '[a]',
-        '-c:v', 'libx264',
-        '-c:a', 'aac',
-        '-strict', 'experimental',
-        '-b:a', '192k',
-        output_video
-    ]
+    #cmd = [
+        #'ffmpeg',
+        #'-i', video2,              # Input background video (video2)
+        #'-i', video1,              # Input overlay video with audio (video1)
+        #'-filter_complex', '[1:v]scale=540:960 [ov]; [0:v][ov]overlay=0:0[v]; [1:a]adelay=delays=0|0 [a]',
+        #'-map', '[v]',
+        #'-map', '[a]',
+       # '-c:v', 'libx264',
+       # '-c:a', 'aac',
+       # '-strict', 'experimental',
+       # '-b:a', '192k',
+       # output_video
+  #  ]
 
-    subprocess.run(cmd)
+ #   subprocess.run(cmd)
 
 

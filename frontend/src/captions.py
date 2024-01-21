@@ -34,7 +34,7 @@ def analyze_caption(caption_text):
     
     punctuation_counts = count_punctuation(caption_text)
 
-    return .1495 * total_syllables + .177 * punctuation_counts[0] + .208* punctuation_counts[1] + .308 * punctuation_counts[2]
+    return .15 * total_syllables + .177 * punctuation_counts[0] + .209* punctuation_counts[1] + .310 * punctuation_counts[2]
 
 
 def create_audio(text, output_file):
