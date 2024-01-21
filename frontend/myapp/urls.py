@@ -17,6 +17,7 @@ urlpatterns = [
     path("custom/", views.custom, name="custom"),
     path("history_options/", views.history_options, name="history_options"),
     path("history_custom/", views.history_custom, name="history_custom"),
+    path('download_video/', download_video, name='download_video'),
 ]
 
 from django.urls import path

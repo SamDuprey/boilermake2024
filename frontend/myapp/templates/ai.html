@@ -1,8 +1,17 @@
 {% extends "base.html" %}
 {% block title %}Create Page{% endblock %}
 {% block homeActive %}"nav-item"{% endblock %}
-{% block createActive %}"nav-itemactive"{% endblock %} 
+{% block createActive %}"nav-itemactive"{% endblock %}
 {% block content %}
+
+{% comment %}
+{% extends "base.html" %}
+{% block title %}Create Page{% endblock %}
+{% block homeActive %}"nav-item"{% endblock %}
+{% block createActive %}"nav-itemactive"{% endblock %}
+{% block content %}
+{% endcomment %}
+
 <br />
 <p class="createDescription center">
   Choose the Subreddit that you want the text from and the background video from
@@ -32,6 +41,7 @@
   </select>
 </div>
 
+{% comment %} Generate AI Video {% endcomment %}
 <div class="container hover">
   <a
     href="#"
@@ -42,7 +52,12 @@
   >
 </div>
 
-<div class="center" id="loading-circle1" style="display: none; margin: 20px;">
+{% comment %} Download Video {% endcomment %}
+<div class="container hover">
+  <a href="{% url 'download_video' %}" class="button generateBtn">Download</a>
+</div>
+
+<div id="loading-circle" style="display: none">
   <div class="spinner-border text-primary" role="status">
     <span class="sr-only">Loading...</span>
   </div>
@@ -55,7 +70,8 @@
 
 <div class="center" id="generated-video" style="display: none">
   <video class="center video" width="480" height="360" controls class="video">
-    <source src="../static/videos/video.mp4" type="video/mp4" />
+    <source src="../static/videos/test_output.mov" type="video/quicktime" />
+    Your browser does not support rendering MOV videos.
   </video>
 </div>
 
