@@ -4,7 +4,7 @@ import pandas as pd
 from plotly.offline import plot
 import plotly.express as px
 from django.views.generic import TemplateView
-from django.http import JsonResponse
+from django.http import FileResponse, JsonResponse
 from .tests import *
 from scripts.test_openai import *
 from src.web_scrape import *
@@ -39,6 +39,29 @@ def execute_video(request):
   generate_video(results, file_path, "./assets/output.mov")
   return JsonResponse({'result': results})
 
+def execute_custom(request):
+  dropdown1_value = request.GET.get('dropdown1', '')
+  dropdown2_value = request.GET.get('dropdown2', '')
+#   result = scrape_history(dropdown1_value)
+  result = dropdown1_value
+  generate_video(result, "./assets/SubwaySurfers.mov", "./static/videos/test_output.mov")
+  return JsonResponse({'result': result})
+
+def download_video(request):
+    # Path to your video file
+    video_path = "./static/videos/test_output.mov"
+
+    # Open the video file using FileResponse
+    response = FileResponse(open(video_path, 'rb'), as_attachment=True)
+
+    # Set the content type (you can adjust it based on your video type)
+    response['Content-Type'] = 'video/quicktime'
+
+    # Set the filename for the download
+    response['Content-Disposition'] = 'attachment; filename="generated_video.mov"'
+
+    return response
+
 def execute_real(request):
   dropdown1_value = request.GET.get('dropdown1', '')
 
@@ -48,6 +71,16 @@ def execute_real(request):
   # Returns a list of strings (stories)
   result = scrape_story(urls)[random.randint(0, len(urls) - 1)]
   return JsonResponse({'result': result})
+
+def execute_history(request):
+  dropdown1_value = request.GET.get('dropdown1', '')
+  dropdown2_value = request.GET.get('dropdown2', '')
+
+  result = scrape_history(dropdown1_value)
+
+  generate_video(result, "./assets/SubwaySurfers.mov", "./static/videos/test_output.mov")
+  return JsonResponse({'result': result})
+
 # Create your views here.
 
 def home(request):
