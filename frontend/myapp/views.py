@@ -1,4 +1,5 @@
 from django.shortcuts import render, HttpResponse
+from django.http import FileResponse
 from .models import *
 import pandas as pd
 from plotly.offline import plot
@@ -33,6 +34,21 @@ def execute_real(request):
 
   generate_video(result, "./assets/SubwaySurfers.mov", "./static/videos/test_output.mov")
   return JsonResponse({'result': result})
+
+def download_video(request):
+    # Path to your video file
+    video_path = "./static/videos/test_output.mov"
+
+    # Open the video file using FileResponse
+    response = FileResponse(open(video_path, 'rb'), as_attachment=True)
+
+    # Set the content type (you can adjust it based on your video type)
+    response['Content-Type'] = 'video/quicktime'
+
+    # Set the filename for the download
+    response['Content-Disposition'] = 'attachment; filename="generated_video.mov"'
+
+    return response
 
 # Create your views here.
 

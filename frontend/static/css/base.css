@@ -1,155 +1,161 @@
 .test1 {
-    background-color: #26364c;
+  background-color: #26364c;
 }
 .main-body {
-    background-color: #e5ebf0;
+  background-color: #e5ebf0;
 }
 .center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.row {
+  flex-direction: row;
 }
 .dropdown-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
 }
 .generateBtn {
-    padding: 25px;
-    margin-top: 15px;
+  padding: 25px;
+  margin-top: 15px;
 }
 .video {
-    padding: 25px;
+  padding: 25px;
 }
 .createDescription {
-    font-size: 24px;
-    width: 75%;
-    margin: 0 auto;
-    text-align: center;
+  font-size: 24px;
+  width: 75%;
+  margin: 0 auto;
+  text-align: center;
 }
 .dropdownLabel {
-    margin-right: 10px;
-    font-size: 1.3em;
+  margin-right: 10px;
+  font-size: 1.3em;
 }
 .dropdown {
-    font-size: 20px;
-    height: 40px;
-    width: 500px;
-    margin-bottom: 5px;
+  font-size: 20px;
+  height: 40px;
+  width: 500px;
+  margin-bottom: 5px;
 }
 .space {
-    margin: 10px;
+  margin: 10px;
 }
 
 .mainContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
 .hover {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .headerText {
-    width: 75%;
-    text-align: center;
+  width: 75%;
+  text-align: center;
 }
 
 .headerText .descriptionText {
-    text-align: center;
-    font-weight: 400;
-    font-size: 1.4em;
+  text-align: center;
+  font-weight: 400;
+  font-size: 1.4em;
 }
 
 .questionText {
-    text-align: center;
-    font-weight: 400;
-    font-size: 1.6em;
-    width: 75%;
-    margin-bottom: 10px;
+  text-align: center;
+  font-weight: 400;
+  font-size: 1.6em;
+  width: 75%;
+  margin-bottom: 10px;
 }
-
 
 /* Start of button hover styling */
 .hover .button {
-    display: inline-block;
-    padding: 0.75rem 1.25rem;
-    border-radius: 10rem;
-    color: #fff;
-    text-transform: uppercase;
-    font-size: 1rem;
-    letter-spacing: 0.15rem;
-    transition: all 0.3s;
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-    width: 250px;
-    text-align: center;
-    margin-bottom: 10px;
+  display: inline-block;
+  padding: 0.75rem 1.25rem;
+  border-radius: 10rem;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 1rem;
+  letter-spacing: 0.15rem;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  width: 250px;
+  text-align: center;
+  margin-bottom: 10px;
 }
 .hover .button:after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #008fb3;
-    border-radius: 10rem;
-    z-index: -2;
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #008fb3;
+  border-radius: 10rem;
+  z-index: -2;
 }
 .hover .button:before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0%;
-    height: 100%;
-    background-color: #04627a;
-    transition: all 0.3s;
-    border-radius: 10rem;
-    z-index: -1;
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background-color: #04627a;
+  transition: all 0.3s;
+  border-radius: 10rem;
+  z-index: -1;
 }
 .hover .button:hover {
-    color: #fff;
+  color: #fff;
 }
 .hover .button:hover:before {
-    width: 100%;
+  width: 100%;
 }
 /* optional reset for presentation */
 .hover * {
-    font-family: Arial;
-    text-decoration: none;
-    font-size: 20px;
+  font-family: Arial;
+  text-decoration: none;
+  font-size: 20px;
 }
 .hover .container {
-    padding-top: 50px;
-    margin: 0 auto;
-    width: 100%;
-    text-align: center;
-    
+  padding-top: 50px;
+  margin: 0 auto;
+  width: 100%;
+  text-align: center;
 }
 .hover h1 {
-    text-transform: uppercase;
-    font-size: 0.8rem;
-    margin-bottom: 2rem;
-    color: #777;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  margin-bottom: 2rem;
+  color: #777;
 }
 .hover span {
-    display: block;
-    margin-top: 2rem;
-    font-size: 0.7rem;
-    color: #777;
+  display: block;
+  margin-top: 2rem;
+  font-size: 0.7rem;
+  color: #777;
 }
 .hover span a {
-    font-size: 0.7rem;
-    color: #999;
-    text-decoration: underline;
+  font-size: 0.7rem;
+  color: #999;
+  text-decoration: underline;
 }
 /* End of button hover styling */

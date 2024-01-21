@@ -11,6 +11,7 @@ urlpatterns = [
     path("ai/", views.ai, name="ai"),
     path("history/", views.history, name="history"),
     path("real_posts/", views.real_posts, name="real_posts"),
+    path('download_video/', download_video, name='download_video'),
 ]
 
 from django.urls import path
