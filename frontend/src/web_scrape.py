@@ -116,14 +116,3 @@ def scrape_history(url):
     driver.close()
     return sentence
 
-# Insert the thread that you want scraped (reddit)
-urls = scrape("https://www.reddit.com/r/AmItheAsshole/")
-urls.pop(0)
-urls = list(set(urls))
-# Returns a list of strings (stories)
-result = scrape_story(urls)
-
-# Gets title and intro from a history.com article
-history = scrape_history("https://www.history.com/topics/exploration/marco-polo")
-print(history)
-

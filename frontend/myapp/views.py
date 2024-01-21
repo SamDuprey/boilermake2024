@@ -7,6 +7,8 @@ from django.views.generic import TemplateView
 from django.http import JsonResponse
 from .tests import *
 from scripts.test_openai import *
+from src.web_scrape import *
+import random
 
 from src.main import generate_video
 from src.captions import generate_captions_video
@@ -23,6 +25,19 @@ def execute_video(request):
   dropdown2_value = request.GET.get('param2', '')
   generate_video(results, "./assets/SubwaySurfers.mov", "./static/videos/test_output.mov")
   return JsonResponse({'result': results})
+
+def execute_real(request):
+  dropdown1_value = request.GET.get('dropdown1', '')
+  dropdown2_value = request.GET.get('dropdown2', '')
+
+  urls = scrape(dropdown1_value)
+  urls.pop(0)
+  urls = list(set(urls))
+  # Returns a list of strings (stories)
+  result = scrape_story(urls)[random.randint(0, len(urls) - 1)]
+
+  generate_video(result, "./assets/SubwaySurfers.mov", "./static/videos/test_output.mov")
+  return JsonResponse({'result': result})
 # Create your views here.
 
 def home(request):
@@ -46,4 +61,11 @@ def real_posts(request):
 def history(request):
     return render(request, "history.html")
 
-    
+def custom(request):
+    return render(request, "custom.html")
+
+def history_options(request):
+    return render(request, "history_options.html")
+
+def history_custom(request):
+    return render(request, "history_custom.html")
