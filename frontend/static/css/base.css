@@ -8,24 +8,30 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    
 }
 .generateBtn {
     padding: 25px;
+    margin-top: 15px;
 }
 .video {
     padding: 25px;
 }
 .createDescription {
     font-size: 24px;
+    width: 75%;
+    margin: 0 auto;
+    text-align: center;
 }
 .dropdownLabel {
-    font-size: 24px;
+    margin-right: 10px;
+    font-size: 1.3em;
 }
 .dropdown {
-    font-size: 24px;
-    height: 50px;
-    width: 600px;
-    margin: 15px;
+    font-size: 20px;
+    height: 40px;
+    width: 500px;
+    margin-bottom: 5px;
 }
 .space {
     margin: 10px;
