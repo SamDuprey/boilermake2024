@@ -36,7 +36,7 @@
   <a
     href="#"
     class="button generateBtn"
-    onclick="submitFormAndShowLoadingCircle()"
+    onclick="submitFormAndShowLoadingCircle(this)"
     >Generate</a
   >
 </div>
@@ -55,7 +55,8 @@
 </div>
 
 <script>
-  function submitFormAndShowLoadingCircle() {
+  function submitFormAndShowLoadingCircle(button) {
+    button.innerText = "Regenerate";
     // Get selected values from dropdowns
     var dropdown1Value = document.getElementById("dropdown1").value;
     var dropdown2Value = document.getElementById("dropdown2").value;

@@ -7,6 +7,8 @@ from django.views.generic import TemplateView
 from django.http import JsonResponse
 from .tests import *
 from scripts.test_openai import *
+from src.web_scrape import *
+import random
 
 from src.main import generate_video
 from src.captions import generate_captions_video
@@ -16,6 +18,19 @@ def execute_dummy(request):
   dropdown2_value = request.GET.get('dropdown2', '')
 
   result = generate_story(dropdown1_value)
+  generate_video(result, "./assets/SubwaySurfers.mov", "./static/videos/test_output.mov")
+  return JsonResponse({'result': result})
+
+def execute_real(request):
+  dropdown1_value = request.GET.get('dropdown1', '')
+  dropdown2_value = request.GET.get('dropdown2', '')
+
+  urls = scrape(dropdown1_value)
+  urls.pop(0)
+  urls = list(set(urls))
+  # Returns a list of strings (stories)
+  result = scrape_story(urls)[random.randint(0, len(urls) - 1)]
+
   generate_video(result, "./assets/SubwaySurfers.mov", "./static/videos/test_output.mov")
   return JsonResponse({'result': result})
 
