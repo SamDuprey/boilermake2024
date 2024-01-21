@@ -13,7 +13,7 @@ import syllables
 
 language = 'en'
 
-client = OpenAI(api_key='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',)
+client = OpenAI(api_key='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',)
 
 def count_syllables(word):
     return syllables.estimate(word)
