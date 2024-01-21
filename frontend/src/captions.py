@@ -75,7 +75,6 @@ def audio_length(audio_file):
 def generate_captions_video(text, output_file, subway):
     # Convert text to speech using pyttsx3
     audio_file = create_audio(text, "temp_audio.wav")
-    fontlist()
 
     # Load the audio clip to get its duration
     audio_clip = AudioFileClip(audio_file)
@@ -131,5 +130,3 @@ def generate_captions_video(text, output_file, subway):
     shutil.rmtree('./delete', ignore_errors=True)
 
 
-def fontlist():
-  print(TextClip.list('font'))
