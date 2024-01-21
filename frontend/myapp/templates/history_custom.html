@@ -29,7 +29,7 @@
 </div>
 
 <div class="container hover">
-  <a href="#" class="button generateBtn" onclick="submitFormAndShowLoadingCircle()">Generate</a>
+  <a href="#" class="button generateBtn" onclick="submitFormAndShowLoadingCircle(this)">Generate</a>
 </div> 
 
 <div id="loading-circle" style="display: none">
@@ -48,16 +48,17 @@
 </div>
 
 <script>
-    function submitFormAndShowLoadingCircle() {
+    function submitFormAndShowLoadingCircle(button) {
+      button.innerText = "Regenerate";
       // Get selected values from dropdowns
-      var dropdown1Value = document.getElementById("dropdown1").value;
+      var dropdown1Value = document.getElementById("dropdown1").value;      
       var dropdown2Value = document.getElementById("dropdown2").value;
   
       // Show the loading circle
       document.getElementById("loading-circle").style.display = "block";
   
       // Make an AJAX request to execute_dummy endpoint with parameters
-      fetch(`/execute_dummy/?dropdown1=${dropdown1Value}&dropdown2=${dropdown2Value}`)
+      fetch(`/execute_history/?dropdown1=${dropdown1Value}&dropdown2=${dropdown2Value}`)
         .then(function(response) {
           return response.json();
         })
