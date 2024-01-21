@@ -104,7 +104,7 @@
       })
       .then(function (data) {
         // Handle the response data from dummy_execute
-        console.log("Result from dummy_execute:", data.result);
+        console.log("Result from real_execute:", data.result);
         document.getElementById("loading-circle1").style.display = "none";
         document.getElementById("loading-circle2").style.display = "flex";
         document.getElementById("ai-text").innerText = data.result;

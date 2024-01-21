@@ -44,7 +44,7 @@ def execute_custom(request):
   dropdown2_value = request.GET.get('dropdown2', '')
 #   result = scrape_history(dropdown1_value)
   result = dropdown1_value
-  generate_video(result, "./assets/SubwaySurfers.mov", "./static/videos/test_output.mov")
+  # generate_video(result, "./assets/SubwaySurfers.mov", "./static/videos/test_output.mov")
   return JsonResponse({'result': result})
 
 def download_video(request):
@@ -78,7 +78,7 @@ def execute_history(request):
 
   result = scrape_history(dropdown1_value)
 
-  generate_video(result, "./assets/SubwaySurfers.mov", "./static/videos/test_output.mov")
+  # generate_video(result, "./assets/SubwaySurfers.mov", "./static/videos/test_output.mov")
   return JsonResponse({'result': result})
 
 # Create your views here.
