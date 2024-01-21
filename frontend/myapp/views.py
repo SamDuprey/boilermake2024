@@ -8,17 +8,21 @@ from django.http import JsonResponse
 from .tests import *
 from scripts.test_openai import *
 
-def execute_dummy(request):
-    dropdown1_value = request.GET.get('dropdown1', '')
-    dropdown2_value = request.GET.get('dropdown2', '')
+from src.main import generate_video
+from src.captions import generate_captions_video
 
-    result = generate_story(dropdown1_value)
-    return JsonResponse({'result': result})
+def execute_dummy(request):
+  dropdown1_value = request.GET.get('dropdown1', '')
+  dropdown2_value = request.GET.get('dropdown2', '')
+
+  result = generate_story(dropdown1_value)
+  generate_video(result, "./assets/SubwaySurfers.mov", "./static/videos/test_output.mov")
+  return JsonResponse({'result': result})
 
 # Create your views here.
 
 def home(request):
-    return render(request, "home.html")
+  return render(request, "home.html")
 
 def create(request):
     return render(request, "create.html")
