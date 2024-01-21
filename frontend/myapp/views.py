@@ -28,4 +28,8 @@ def options(request):
 
 def story_options(request):
     return render(request, "story_options.html")
+
+def ai(request):
+    return render(request, "ai.html")
+
     

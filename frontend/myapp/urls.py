@@ -8,6 +8,7 @@ urlpatterns = [
     path("create/", views.create, name="create"),
     path("options/", views.options, name="options"),
     path("story_options/", views.story_options, name="story_options"),
+    path("ai/", views.ai, name="ai"),
 ]
 
 from django.urls import path

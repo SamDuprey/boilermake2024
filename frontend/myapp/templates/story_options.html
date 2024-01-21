@@ -8,13 +8,13 @@
     </div>
     
     <div class="container hover">
-        <a href="#" class="button">AI-Generated</a>
+        <a href="{% url 'ai' %}" class="button">AI-Generated</a>
     </div> 
-    <div class="space">
+    {% comment %} <div class="space">
         <p> </p>
-    </div>
+    </div> {% endcomment %}
     <div class="container hover">
-        <a href="#" class="button">Real Reddit Posts</a>
+        <a href="{% url 'create' %}" class="button">Real Reddit Posts</a>
     </div> 
 </div>
 
