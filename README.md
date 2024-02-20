@@ -1,5 +1,35 @@
 # Artikulate
 
+<style>
+.flex-container {
+  display: flex;
+  flex-direction: row;
+}
+.markdown-element {
+  margin: 0 3px; /* Adjust the margin as needed */
+}
+</style>
+
+<!-- Badges from https://shields.io/badges -->
+
+<div class="flex-container">
+
+[![Static Badge](https://img.shields.io/badge/Python-3.11.7-306998)](https://www.python.org/downloads/release/python-3117/)
+
+<span class="markdown-element"></span>
+
+[![Static Badge](https://img.shields.io/badge/Django-4.2.10-limegreen)](https://docs.djangoproject.com/en/4.2/releases/4.2.10/)
+
+<span class="markdown-element"></span>
+
+[![Static Badge](https://img.shields.io/badge/Selenium-4.16.0-62ae41)](https://www.selenium.dev/blog/2023/selenium-4-16-released/)
+
+<span class="markdown-element"></span>
+
+[![Static Badge](https://img.shields.io/badge/FFmpeg-6.1.1-337521)](https://www.ffmpeg.org/download.html)
+
+</div>
+
 ## Inspiration
 
 The shift towards short-term content in recent years, particularly on social media platforms like TikTok, reflects a broader trend in how the modern generation consumes and engages with information. Platforms like TikTok thrive on engaging visuals and user-generated content, catering to decreasing attention spans. We aimed to create a product capable of transforming traditional text regarding realms like news, education content, and stories, into a more engaging format for the newer generations.
@@ -10,55 +40,61 @@ Artikulate is a video-editing and content-generation tool, which creates text-to
 
 When users enter Artikulate they are asked if they want to create a video for Entertainment, for educational purposes (History), or create a Custom Video. If they select Entertainment, they can choose between generative AI or web-scraping Reddit posts in real time. Regardless of their option, they can select from a list of subreddits they want their video to be from and the type of background video the generated video will have. If the user selects History, they can select from a list of articles or input their own URL to create an informative video. Lastly, if the user selects Custom, they can input their own text that will be used in the text-to-speech caption generated videos.
 
+Read more/demo on Devpost:
+
+![Devpost](https://img.shields.io/badge/Devpost-003E54?style=for-the-badge&logo=devpost&logoColor=white)
+
 ## How to run:
 
-### Run with docker:
+### Running with docker:
 
 - Currently Django and FFmpeg works on docker, but I need to set up docker volumes for the video files
 
-You will need to create a .env in frontend/ with your own OpenAI API key
+##### Create OpenAI API key
+
+- You will need to create a .env in frontend/ with your own OpenAI API key
 
 ```
 echo "OPENAI_API_KEY=[your API key here]" > .env
 ```
 
-Build Docker Image
+##### Build Docker Image:
+
+- This extracts the OPENAI_API_KEY from the .env and adds it in when building the docker image
 
 ```
-docker build --build-arg OPENAI_API_KEY=$(cat .env | grep OPENAI_API_KEY | cut -d '=' -f 2) -t (your image name) .
+docker build --build-arg OPENAI_API_KEY=$(cat .env | grep OPENAI_API_KEY | cut -d '=' -f 2) -t artikulate-docker .
 ```
 
-Run Django server with Docker:
+##### Start Django server:
 
 ```
-docker run -p 8002:8002 (your image name)
+docker run -p 8002:8002 artikulate-docker
 ```
 
-### Run without Docker (not recommended lol):
+### Running without Docker:
 
-Create Python environment:
+- not recommended lol
+
+##### Create Python environment:
 
 ```
 python3 -m venv venv
 ```
 
-Install all dependencies locally:
+##### Install all dependencies locally:
 
 ```
 install --no-cache-dir -r requirements.txt
 ```
 
-Start Django
+##### Start Django Server:
 
 ```
 python frontend/manage.py runserver
 ```
 
-Show version of install dependency:
-
-```
-pip show [dependency]
-```
+- This might not even work depending on your local system, had issues running ffmpeg on Windows devices, so just running it on Docker is much easier
 
 ## How we built it
 
