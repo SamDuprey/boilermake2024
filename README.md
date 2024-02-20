@@ -72,8 +72,7 @@ brew install ffmpeg
 
 ##### Windows
 
-Install at https://ffmpeg.org/download.html
-Then configure the environment (Good luck)!
+Install at https://ffmpeg.org/download.html, then configure the PATH environment variable. (Good luck on that lol)
 
 #### Install all dependencies locally:
 
