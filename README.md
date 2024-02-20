@@ -70,6 +70,12 @@ python frontend/manage.py runserver
 
 - This might not even work depending on your local system, had issues running ffmpeg on Windows devices, so just running it on Docker is much easier
 
+### Assets:
+
+- Note, the video files in frontend/assets are not on GitHub, the files are too large.
+
+You can download the video files used in the demo project here: [Download Assets](https://www.mediafire.com/folder/c1wlsvvre7gar/assets)
+
 ## How we built it
 
 We first did research on the technologies best to build our project. Since we were working with web scraping and we found some libraries dealing with captioning and audio in Python, that’s the language we decided to use. We used Django as our web framework because we could use HTML while working with dynamic content. We chose not to use Flask, another popular Python web framework, because it was too simplistic for our needs. To get the text content for the videos, we used Selenium and Beautiful Soup Python libraries to web scrape web pages. Selenium worked well with dynamic content and page scrolling while Beautiful Soup had a lot of functionality for parsing HTML to get the text that we needed.
