@@ -12,7 +12,9 @@ When users enter Artikulate they are asked if they want to create a video for En
 
 ## How to run:
 
-### Run with docker (Currently Django and FFmpeg works on docker, but I need to set up docker volumes for the video files):
+### Run with docker:
+
+- Currently Django and FFmpeg works on docker, but I need to set up docker volumes for the video files
 
 You will need to create a .env in frontend/ with your own OpenAI API key
 
