@@ -1,6 +1,5 @@
 # Artikulate
 
-
 <!-- Badges from https://shields.io/badges -->
 
 [![Static Badge](https://img.shields.io/badge/Python-3.11.7-306998)](https://www.python.org/downloads/release/python-3117/) [![Static Badge](https://img.shields.io/badge/Django-4.2.10-limegreen)](https://docs.djangoproject.com/en/4.2/releases/4.2.10/) [![Static Badge](https://img.shields.io/badge/Selenium-4.16.0-62ae41)](https://www.selenium.dev/blog/2023/selenium-4-16-released/) [![Static Badge](https://img.shields.io/badge/FFmpeg-6.1.1-337521)](https://www.ffmpeg.org/download.html)
@@ -17,7 +16,7 @@ When users enter Artikulate they are asked if they want to create a video for En
 
 Read more/demo on Devpost:
 
-![Devpost](https://img.shields.io/badge/Devpost-003E54?style=for-the-badge&logo=devpost&logoColor=white)
+[![Devpost](https://img.shields.io/badge/Devpost-003E54?style=for-the-badge&logo=devpost&logoColor=white)](https://devpost.com/software/artikulate)
 
 ## How to run:
 
