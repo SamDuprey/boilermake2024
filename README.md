@@ -20,11 +20,15 @@ Read more/demo on Devpost:
 
 ## How to run:
 
+#### Prerequisites:
+
+- Python, Django, and Docker
+
 ### Running with docker:
 
 - Currently Django and FFmpeg works on docker, but I need to set up docker volumes for the video files
 
-##### Create OpenAI API key
+#### Create OpenAI API key
 
 - You will need to create a .env in frontend/ with your own OpenAI API key
 
@@ -32,7 +36,7 @@ Read more/demo on Devpost:
 echo "OPENAI_API_KEY=[your API key here]" > .env
 ```
 
-##### Build Docker Image:
+#### Build Docker Image:
 
 - This extracts the OPENAI_API_KEY from the .env and adds it in when building the docker image
 
@@ -40,7 +44,7 @@ echo "OPENAI_API_KEY=[your API key here]" > .env
 docker build --build-arg OPENAI_API_KEY=$(cat .env | grep OPENAI_API_KEY | cut -d '=' -f 2) -t artikulate-docker .
 ```
 
-##### Start Django server:
+#### Start Django server:
 
 ```
 docker run -p 8002:8002 artikulate-docker
@@ -50,19 +54,34 @@ docker run -p 8002:8002 artikulate-docker
 
 - not recommended lol
 
-##### Create Python environment:
+#### Create Python environment:
 
 ```
 python3 -m venv venv
 ```
 
-##### Install all dependencies locally:
+#### Install FFmpeg:
+
+- Installing on MacOS is easy, Windows requires more configuring
+
+##### MacOS with Homebrew
+
+```
+brew install ffmpeg
+```
+
+##### Windows
+
+Install at https://ffmpeg.org/download.html
+Then configure the environment (Good luck)!
+
+#### Install all dependencies locally:
 
 ```
 install --no-cache-dir -r requirements.txt
 ```
 
-##### Start Django Server:
+#### Start Django Server:
 
 ```
 python frontend/manage.py runserver
