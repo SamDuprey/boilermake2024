@@ -10,6 +10,54 @@ Artikulate is a video-editing and content-generation tool, which creates text-to
 
 When users enter Artikulate they are asked if they want to create a video for Entertainment, for educational purposes (History), or create a Custom Video. If they select Entertainment, they can choose between generative AI or web-scraping Reddit posts in real time. Regardless of their option, they can select from a list of subreddits they want their video to be from and the type of background video the generated video will have. If the user selects History, they can select from a list of articles or input their own URL to create an informative video. Lastly, if the user selects Custom, they can input their own text that will be used in the text-to-speech caption generated videos.
 
+## How to run:
+
+### Run with docker (Currently Django and FFmpeg works on docker, but I need to set up docker volumes for the video files):
+
+You will need to create a .env in frontend/ with your own OpenAI API key
+
+```
+echo "OPENAI_API_KEY=[your API key here]" > .env
+```
+
+Build Docker Image
+
+```
+docker build --build-arg OPENAI_API_KEY=$(cat .env | grep OPENAI_API_KEY | cut -d '=' -f 2) -t (your image name) .
+```
+
+Run Django server with Docker:
+
+```
+docker run -p 8002:8002 (your image name)
+```
+
+### Run without Docker (not recommended lol):
+
+Create Python environment:
+
+```
+python3 -m venv venv
+```
+
+Install all dependencies locally:
+
+```
+install --no-cache-dir -r requirements.txt
+```
+
+Start Django
+
+```
+python frontend/manage.py runserver
+```
+
+Show version of install dependency:
+
+```
+pip show [dependency]
+```
+
 ## How we built it
 
 We first did research on the technologies best to build our project. Since we were working with web scraping and we found some libraries dealing with captioning and audio in Python, that’s the language we decided to use. We used Django as our web framework because we could use HTML while working with dynamic content. We chose not to use Flask, another popular Python web framework, because it was too simplistic for our needs. To get the text content for the videos, we used Selenium and Beautiful Soup Python libraries to web scrape web pages. Selenium worked well with dynamic content and page scrolling while Beautiful Soup had a lot of functionality for parsing HTML to get the text that we needed.
@@ -47,23 +95,3 @@ Many of the technologies used in Artikulate were new to us prior to this hackath
 We have only worked on AI generative features and web scraping for Reddit and History.com. Artikulate’s web scraping and AI text generation features could be expanded to other different websites such as Wikipedia or the New York Times to make information more accessible to emerging generations.
 
 Additionally, we’ve made a backend and have it working locally, so we want to expand the project by deploying the project to a custom domain name. Hosting some of the video files take up a lot of storage, so we also want to look into incorporating cloud services like AWS to host most of our assets.
-
-## How to run:
-
-Start Django Server
-
-```
-python manage.py runserver
-```
-
-Install all dependencies:
-
-```
-install --no-cache-dir -r requirements.txt
-```
-
-Show version of install dependency:
-
-```
-pip show [dependency]
-```
