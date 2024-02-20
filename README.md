@@ -1,34 +1,9 @@
 # Artikulate
 
-<style>
-.flex-container {
-  display: flex;
-  flex-direction: row;
-}
-.markdown-element {
-  margin: 0 3px; /* Adjust the margin as needed */
-}
-</style>
 
 <!-- Badges from https://shields.io/badges -->
 
-<div class="flex-container">
-
-[![Static Badge](https://img.shields.io/badge/Python-3.11.7-306998)](https://www.python.org/downloads/release/python-3117/)
-
-<span class="markdown-element"></span>
-
-[![Static Badge](https://img.shields.io/badge/Django-4.2.10-limegreen)](https://docs.djangoproject.com/en/4.2/releases/4.2.10/)
-
-<span class="markdown-element"></span>
-
-[![Static Badge](https://img.shields.io/badge/Selenium-4.16.0-62ae41)](https://www.selenium.dev/blog/2023/selenium-4-16-released/)
-
-<span class="markdown-element"></span>
-
-[![Static Badge](https://img.shields.io/badge/FFmpeg-6.1.1-337521)](https://www.ffmpeg.org/download.html)
-
-</div>
+[![Static Badge](https://img.shields.io/badge/Python-3.11.7-306998)](https://www.python.org/downloads/release/python-3117/) [![Static Badge](https://img.shields.io/badge/Django-4.2.10-limegreen)](https://docs.djangoproject.com/en/4.2/releases/4.2.10/) [![Static Badge](https://img.shields.io/badge/Selenium-4.16.0-62ae41)](https://www.selenium.dev/blog/2023/selenium-4-16-released/) [![Static Badge](https://img.shields.io/badge/FFmpeg-6.1.1-337521)](https://www.ffmpeg.org/download.html)
 
 ## Inspiration
 
