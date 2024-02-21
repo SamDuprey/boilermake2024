@@ -4,7 +4,7 @@ from .views import *
 
 urlpatterns = [
     path('execute_dummy/', execute_dummy, name='execute_dummy'),
-     path('execute_video/', execute_video, name='execute_video'),
+    path('execute_video/', execute_video, name='execute_video'),
     path('execute_real/', execute_real, name='execute_real'),
     path('execute_history/', execute_history, name='execute_history'),
     path('execute_custom/', execute_custom, name='execute_custom'),

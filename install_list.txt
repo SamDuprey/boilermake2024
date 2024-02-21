@@ -1,4 +1,5 @@
 
+Python version: 3.11.7
 pip install Pillow==9.5.0
 pip install pyttsx3
 pip install moviepy
@@ -6,3 +7,4 @@ pip install imageio[ffmpeg]
 brew install ffmpeg # mac only:  windows is here: https://ffmpeg.org/download.html
 brew install portaudio libffi
 
+This will be outdated once I implement hosting FFmpeg in Docker

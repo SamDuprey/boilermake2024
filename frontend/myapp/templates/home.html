@@ -1,27 +1,29 @@
 {% extends "base.html" %}
 {% block title %}Home Page{% endblock %}
-
 {% block homeActive %}"nav-item active"{% endblock %}
 {% block createActive %}"nav-item"{% endblock %}
-
 {% block content %}
 
 <div class="mainContainer">
-    <div class="headerText">
-        <h2>Welcome to Artikulate!</h2>
+  <div class="headerText">
+    <h2>Welcome to Artikulate!</h2>
     <div>
+      <div class="descriptionText">
+        <p>
+          Artikulate is a video-editing and content generation tool, helping to
+          increase engagement for the younger generation.
+        </p>
+      </div>
 
-    <div class="descriptionText">
-        <p>Artikulate is a video-editing and content generation tool, helping to increase engagement for the younger generation.</p>
-    </div>
+      <div class="space">
+        <p></p>
+      </div>
 
-    <div class="space">
-        <p> </p>
-    </div>
-
-    <div class="container hover">
+      <div class="container hover">
         <a href="{% url 'create' %}" class="button">Begin!</a>
-    </div> 
-</div>
+      </div>
+    </div>
 
-{% endblock %}
+    {% endblock %}
+  </div>
+</div>

@@ -10,10 +10,14 @@ from moviepy.editor import AudioFileClip
 from src.convert import *
 import re
 import syllables
+from decouple import config
 
 language = 'en'
 
-client = OpenAI(api_key='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',)
+# gets the API key from the .env file
+OPENAI_API_KEY = config('OPENAI_API_KEY')
+
+client = OpenAI(api_key=OPENAI_API_KEY)
 
 def count_syllables(word):
     return syllables.estimate(word)

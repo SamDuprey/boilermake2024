@@ -2,16 +2,22 @@ beautifulsoup4==4.11.1
 Requests==2.31.0
 selenium==4.16.0
 Pillow==9.5.0
-pyttsx3==2.90 #pyttsx4==3.0.15
 moviepy==1.0.3
 imageio==2.33.1
 openai==1.8.0
 pandas==2.2.0
 plotly==5.18.0
-django-embed-video==1.4.0
+django-embed-video==1.4.9
 wheel==0.42.0
-py3-tts==1.0.0
 comtypes==1.2.1
-pyobjc==9.0.1
-pyttsx==1.1
 syllables==1.0.9
+python-decouple==3.8
+pydub==0.25.1
+django-upgrade==1.16.0
+django==4.2.10
+
+# Unused imports: other tts libraries/deprecated libraries
+# pyobjc==9.0.1
+# pyttsx==1.1
+# py3-tts==1.0.0
+# pyttsx3==2.90 #pyttsx4==3.0.15
